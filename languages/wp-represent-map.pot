@@ -1,0 +1,49 @@
+
+# Options
+msgid "Wp Represent Map Settings"
+msgstr ""
+
+
+# Options
+msgid "Change your location and another stuffs"
+msgstr ""
+
+# Options
+msgid "Settings"
+msgstr ""
+
+# Options
+msgid "Default City"
+msgstr ""
+
+# Options
+msgid "Default Lat Lng"
+msgstr ""
+
+# Options
+msgid "Lat and Long is need to determine the center of the map on default screen"
+msgstr ""
+
+# Options
+msgid "How I discover Lat Lng?"
+msgstr ""
+
+# Options
+msgid "Go at http://maps.google.com.br and follow these steps "
+"<br />1: type your location, browse to center map where you want"
+"<br />2: at the options click in a chain icon, browse in the link has open at his side, "
+<br />copy the values like the step 3"
+msgstr ""
+
+
+# Options
+msgid "Save Changes"
+msgstr ""
+
+# Options
+msgid "Options saved with success"
+msgstr ""
+
+# Options
+msgid "No changes made"
+msgstr ""

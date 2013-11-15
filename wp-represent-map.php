@@ -9,6 +9,13 @@ Author URI: http://andrebian.com
 License: GPLv2
 */
 
+require 'includes/load.php';
+
+add_action('admin_menu', 'wp_represent_map_options_page');
+function wp_represent_map_options_page() 
+{
+        add_options_page( 'WP Represent Map', 'WP Represent Map', 7, __FILE__, 'manage_options_for_wp_represent_map');
+}
 
 /* Translation files */
-load_plugin_textdomain( 'redsuns-user-social', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+load_plugin_textdomain( 'wp-represent-map', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
