@@ -10,3 +10,5 @@ License: GPLv2
 */
 
 
+/* Translation files */
+load_plugin_textdomain( 'redsuns-user-social', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
