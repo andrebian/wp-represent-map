@@ -1,4 +1,8 @@
 
+# Plugin description
+msgid "Allow represent map pins management in wordpress"
+msgstr ""
+
 # Options
 msgid "Wp Represent Map Settings"
 msgstr ""

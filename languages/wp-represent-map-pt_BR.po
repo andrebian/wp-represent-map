@@ -1,4 +1,9 @@
 
+#. Description of the plugin/theme
+msgid ""
+"Allow represent map pins management in wordpress"
+msgstr "Possibilita o cadastro e manutenção de diversos tipos de itens em mapas."
+
 # Options
 msgid "Wp Represent Map Settings"
 msgstr "Opções para o WP Represent Map"
