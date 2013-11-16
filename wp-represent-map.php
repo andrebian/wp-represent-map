@@ -75,3 +75,7 @@ function wp_represent_map_custom_boxes()
 add_action('add_meta_boxes', 'wp_represent_map_custom_boxes');
 add_action( 'save_post', 'meta_box_item_map_info_save' );
 
+
+// Ajax Call
+add_action( 'wp_ajax_get_lat_lng', 'get_lat_lng' );
+add_action( 'wp_ajax_nopriv_get_lat_lng', 'get_lat_lng' );
