@@ -98,3 +98,16 @@ msgstr "Nenhum item localizado na lixeira"
 
 msgid "Type"
 msgstr "Tipo"
+
+# Post Type Meta Box
+msgid "Item info"
+msgstr "Informações"
+
+
+# Post Meta Box
+msgid "Address"
+msgstr "Endereço completo"
+
+# Post Meta Box
+msgid "LatLng"
+msgstr "Latitude, Longitude (posição exata no mapa)"

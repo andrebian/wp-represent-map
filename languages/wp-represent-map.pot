@@ -94,3 +94,16 @@ msgstr ""
 # Post type Taxonomy
 msgid "Type"
 msgstr ""
+
+# Post Type Meta Box
+msgid "Item info"
+msgstr ""
+
+
+# Post Meta Box
+msgid "Address"
+msgstr ""
+
+# Post Meta Box
+msgid "LatLng"
+msgstr ""

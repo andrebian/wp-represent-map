@@ -46,7 +46,7 @@ function type_post_represent_map() {
                 'hierarchical' => false,
                 'menu_position' => 5,
                 'menu_icon' => plugin_dir_url(__FILE__) . '/assets/img/wp-represent-map.png',
-                'register_meta_box_cb' => '',
+                'register_meta_box_cb' => 'wp_represent_map_custom_boxes',
                 'supports' => array( 'title', 'editor' )
         );
         register_post_type( 'represent_map', $args );
@@ -67,3 +67,11 @@ add_action( 'init', 'type_post_represent_map' );
 
 /* Translation files */
 load_plugin_textdomain( 'wp-represent-map', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+
+function wp_represent_map_custom_boxes()
+{
+    add_meta_box('meta_box_item_map_info', __('Item info', 'wp-represent-map'), 'meta_box_item_map_info', 'represent_map', 'side', 'default');
+}
+add_action('add_meta_boxes', 'wp_represent_map_custom_boxes');
+add_action( 'save_post', 'meta_box_item_map_info_save' );
+
