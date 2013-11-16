@@ -3,7 +3,6 @@
 msgid "Wp Represent Map Settings"
 msgstr ""
 
-
 # Options
 msgid "Change your location and another stuffs"
 msgstr ""
@@ -46,4 +45,48 @@ msgstr ""
 
 # Options
 msgid "No changes made"
+msgstr ""
+
+# Post type
+msgid "Map items"
+msgstr ""
+
+# Post type
+msgid "Map item"
+msgstr ""
+
+# Post type
+msgid "Add new"
+msgstr ""
+
+# Post type
+msgid "Add item"
+msgstr ""
+
+# Post type
+msgid "No register found in trash"
+msgstr ""
+
+# Post type
+msgid "Edit item"
+msgstr ""
+
+# Post type
+msgid "View item"
+msgstr ""
+
+# Post type
+msgid "Search items"
+msgstr ""
+
+# Post type
+msgid "No registers found"
+msgstr ""
+
+# Post type
+msgid "No register found in trash"
+msgstr ""
+
+# Post type Taxonomy
+msgid "Type"
 msgstr ""

@@ -50,3 +50,46 @@ msgstr "Opções guardadas com sucesso!"
 # Options
 msgid "No changes made"
 msgstr "Os campos não sofreram alterações e nenhuma mudança foi realizada"
+
+# Post type
+msgid "Map items"
+msgstr ""
+
+# Post type
+msgid "Map item"
+msgstr ""
+
+# Post type
+msgid "Add new"
+msgstr "Adicionar novo"
+
+# Post type
+msgid "Add item"
+msgstr "Adicionar item"
+
+# Post type
+msgid "New item"
+msgstr "Novo item"
+
+# Post type
+msgid "Edit item"
+msgstr "Editar item"
+
+# Post type
+msgid "View item"
+msgstr "Visualizar item"
+
+# Post type
+msgid "Search items"
+msgstr "Procurar por itens"
+
+# Post type
+msgid "No registers found"
+msgstr "Nenhum item localizado"
+
+# Post type
+msgid "No register found in trash"
+msgstr "Nenhum item localizado na lixeira"
+
+msgid "Type"
+msgstr "Tipo"
