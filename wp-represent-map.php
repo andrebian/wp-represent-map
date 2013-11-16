@@ -47,7 +47,7 @@ function type_post_represent_map() {
                 'menu_position' => 5,
                 'menu_icon' => plugin_dir_url(__FILE__) . '/assets/img/wp-represent-map.png',
                 'register_meta_box_cb' => '',
-                'supports' => array( 'title', 'editor', 'custom-fields' )
+                'supports' => array( 'title', 'editor' )
         );
         register_post_type( 'represent_map', $args );
         
