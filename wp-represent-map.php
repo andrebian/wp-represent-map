@@ -10,6 +10,8 @@ Text Domain: wp-represent-map
 License: GPLv2
 */
 
+define('PLUGIN_DIR_NAME', 'wp-represent-map');
+
 /*
  * Calling all required load files
  * 

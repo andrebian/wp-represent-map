@@ -1,5 +1,8 @@
 <?php
-include_once "header.php";
+//include_once "header.php";
+
+$url_base = get_bloginfo('url') . '/wp-content/plugins/' . PLUGIN_DIR_NAME . '/vendor/represent-map/represent-map/';
+
 ?>
 
 <!DOCTYPE html>
@@ -18,15 +21,15 @@ include_once "header.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="map.css?nocache=289671982568" type="text/css" />
-    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="mobile.css" type="text/css" />
-    <script src="./scripts/jquery-1.7.1.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./bootstrap/js/bootstrap-typeahead.js" type="text/javascript" charset="utf-8"></script>
+    <link href="<?php echo $url_base; ?>bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo $url_base; ?>bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $url_base; ?>map.css?nocache=289671982568" type="text/css" />
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="<?php echo $url_base; ?>mobile.css" type="text/css" />
+    <script src="<?php echo $url_base; ?>scripts/jquery-1.7.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="<?php echo $url_base; ?>bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="<?php echo $url_base; ?>bootstrap/js/bootstrap-typeahead.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="./scripts/label.js"></script>
+    <script type="text/javascript" src="<?php echo $url_base; ?>scripts/label.js"></script>
     
     <script type="text/javascript">
       var map;
@@ -385,70 +388,73 @@ include_once "header.php";
     <!-- google map -->
     <div id="map_canvas"></div>
     
-    <!-- topbar -->
-    <div class="topbar" id="topbar">
-      <div class="wrapper">
-        <div class="right">
-          <div class="share">
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= $domain ?>" data-text="<?= $twitter['share_text'] ?>" data-via="<?= $twitter['username'] ?>" data-count="none">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            <div class="fb-like" data-href="<?= $domain ?>" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial"></div>
-          </div>
-        </div>
-        <div class="left">
-          <div class="logo">
-            <a href="./">
-              <img src="images/logo.png" alt="" />
-            </a>
-          </div>
-          <div class="buttons">
-            <a href="#modal_info" class="btn btn-large btn-info" data-toggle="modal"><i class="icon-info-sign icon-white"></i>About this Map</a>
-            <?php if($sg_enabled) { ?>
-              <a href="#modal_add_choose" class="btn btn-large btn-success" data-toggle="modal"><i class="icon-plus-sign icon-white"></i>Add Something</a>
-            <? } else { ?>
-              <a href="#modal_add" class="btn btn-large btn-success" data-toggle="modal"><i class="icon-plus-sign icon-white"></i>Add Something</a>
-            <? } ?>
-          </div>
-          <div class="search">
-            <input type="text" name="search" id="search" placeholder="Search for companies..." data-provide="typeahead" autocomplete="off" />
-          </div>
-        </div>
-      </div>
-    </div>
     
+    <?php if( $header == true ) : ?>
+        <!-- topbar -->
+        <div class="topbar" id="topbar">
+          <div class="wrapper">
+            <div class="right">
+              <div class="share">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= $domain ?>" data-text="<?= $twitter['share_text'] ?>" data-via="<?= $twitter['username'] ?>" data-count="none">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <div class="fb-like" data-href="<?= $domain ?>" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial"></div>
+              </div>
+            </div>
+            <div class="left">
+              <div class="logo">
+                <a href="./">
+                  <img src="<?php echo $url_base; ?>images/logo.png" alt="" />
+                </a>
+              </div>
+              <div class="buttons">
+                <a href="#modal_info" class="btn btn-large btn-info" data-toggle="modal"><i class="icon-info-sign icon-white"></i>About this Map</a>
+                <?php if($sg_enabled) { ?>
+                  <a href="#modal_add_choose" class="btn btn-large btn-success" data-toggle="modal"><i class="icon-plus-sign icon-white"></i>Add Something</a>
+                <? } else { ?>
+                  <a href="#modal_add" class="btn btn-large btn-success" data-toggle="modal"><i class="icon-plus-sign icon-white"></i>Add Something</a>
+                <? } ?>
+              </div>
+              <div class="search">
+                <input type="text" name="search" id="search" placeholder="Search for companies..." data-provide="typeahead" autocomplete="off" />
+              </div>
+            </div>
+          </div>
+        </div>
+    <?php endif; ?>
+    
+    <?php //if ( $header == true ) : ?>   
     <!-- right-side gutter -->
     <div class="menu" id="menu">
       <ul class="list" id="list">
         <?php
-          $types = Array(
-              Array('startup', 'Startups'),
-              Array('accelerator','Accelerators'),
-              Array('incubator', 'Incubators'), 
-              Array('coworking', 'Coworking'), 
-              Array('investor', 'Investors'),
-              Array('service', 'Consulting'),
-              Array('hackerspace', 'Hackerspaces')
-              );
-          if($show_events == true) {
-            $types[] = Array('event', 'Events'); 
-          }
-          $marker_id = 0;
-          foreach($types as $type) {
-            if($type[0] != "event") {
-              $markers = mysql_query("SELECT * FROM places WHERE approved='1' AND type='$type[0]' ORDER BY title");
-            } else {
-              $markers = mysql_query("SELECT * FROM events WHERE start_date > ".time()." AND start_date < ".(time()+4838400)." ORDER BY id DESC");
-            }
-            $markers_total = mysql_num_rows($markers);
-            echo "
+          
+          foreach($markers as $mark) : ?>
+            
               <li class='category'>
                 <div class='category_item'>
-                  <div class='category_toggle' onClick=\"toggle('$type[0]')\" id='filter_$type[0]'></div>
-                  <a href='#' onClick=\"toggleList('$type[0]');\" class='category_info'><img src='./images/icons/$type[0].png' alt='' />$type[1]<span class='total'> ($markers_total)</span></a>
+                  <div class='category_toggle' 
+                       onClick="toggle('<?php echo $mark['slug']; ?>')" 
+                       id="filter_<?php echo $mark['slug']; ?>">
+                  </div>
+                  <a href='#' onClick="toggleList('<?php echo $mark['slug']; ?>');" class="category_info">
+                      <img src="<?php echo $url_base; ?>images/icons/<?php echo $mark['slug']; ?>.png" 
+                           alt="" />
+                      <?php echo $mark['name']; ?>
+                      <span class="total"> ( <?php echo $markers['total']; ?> )</span>
+                  </a>
                 </div>
-                <ul class='list-items list-$type[0]'>
-            ";
-            while($marker = mysql_fetch_assoc($markers)) {
+                <ul class="list-items list-<?php echo $mark['slug']; ?>">
+            
+            <?php 
+            foreach($item_to_map as $itm) {
+                foreach()
+                echo "
+                  <li class='".$marker[type]."'>
+                    <a href='#' onMouseOver=\"markerListMouseOver('".$marker_id."')\" onMouseOut=\"markerListMouseOut('".$marker_id."')\" onClick=\"goToMarker('".$marker_id."');\">".$marker[title]."</a>
+                  </li>
+              ";
+            }
+            while($item = mysql_fetch_assoc($markers)) {
               echo "
                   <li class='".$marker[type]."'>
                     <a href='#' onMouseOver=\"markerListMouseOver('".$marker_id."')\" onMouseOut=\"markerListMouseOut('".$marker_id."')\" onClick=\"goToMarker('".$marker_id."');\">".$marker[title]."</a>
@@ -460,7 +466,7 @@ include_once "header.php";
                 </ul>
               </li>
             ";
-          }
+          endforeach;
         ?>
         <li class="blurb"><?= $blurb ?></li>
         <li class="attribution">
@@ -469,6 +475,7 @@ include_once "header.php";
         </li>
       </ul>
     </div>
+    <?php //endif; ?>
     
     <!-- more info modal -->
     <div class="modal hide" id="modal_info">
@@ -493,20 +500,20 @@ include_once "header.php";
         </p>
         <p>
           If you want to support the LA community by linking to this map from your website,
-          here are some badges you might like to use. You can also grab the <a href="./images/badges/LA-icon.ai">LA icon AI file</a>.
+          here are some badges you might like to use. You can also grab the <a href="<?php echo $url_base; ?>images/badges/LA-icon.ai">LA icon AI file</a>.
         </p>
         <ul class="badges">
           <li>
-            <img src="./images/badges/badge1.png" alt="">
+            <img src="<?php echo $url_base; ?>images/badges/badge1.png" alt="">
           </li>
           <li>
-            <img src="./images/badges/badge1_small.png" alt="">
+            <img src="<?php echo $url_base; ?>images/badges/badge1_small.png" alt="">
           </li>
           <li>
-            <img src="./images/badges/badge2.png" alt="">
+            <img src=<?php echo $url_base; ?>images/badges/badge2.png" alt="">
           </li>
           <li>
-            <img src="./images/badges/badge2_small.png" alt="">
+            <img src="<?php echo $url_base; ?>images/badges/badge2_small.png" alt="">
           </li>
         </ul>
         <p>
