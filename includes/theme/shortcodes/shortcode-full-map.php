@@ -13,8 +13,12 @@
  * 
  * @since 1.0.0
  */
-function full_map( $header = true, $menu = true )
+function full_map()
 {
+    $passed_args = func_get_args(); 
+    $top_bar = $passed_args[0]['top_bar'] === 'true' ? true : false;
+    $menu = $passed_args[0]['menu'] === 'true' ? true : false;
+   
     // getting total items for map
     $markers = array();
     if ( $terms = get_terms('represent_map_type') ) {
@@ -50,8 +54,20 @@ function full_map( $header = true, $menu = true )
         );
     }
     
+    $url_base = get_bloginfo('url') . '/wp-content/plugins/' . PLUGIN_DIR_NAME . '/includes/theme/content/';
+    $options = get_option('wp-represent-map');
     
-    require './wp-content/plugins/wp-represent-map/vendor/represent-map/represent-map/index.php';
+    $lat_lng = $options['_wp_represent_map_default_lat_lng'];
+
+    require './wp-content/plugins/wp-represent-map/includes/theme/content/index.php';
+    if ( $top_bar ) {
+        require './wp-content/plugins/wp-represent-map/includes/theme/content/header-map.php';
+    }
+    
+    if ( $menu ) {
+        require './wp-content/plugins/wp-represent-map/includes/theme/content/header.php';
+    }
+    
 }
 
 add_shortcode('full-map', 'full_map');

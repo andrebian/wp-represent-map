@@ -389,7 +389,7 @@ $url_base = get_bloginfo('url') . '/wp-content/plugins/' . PLUGIN_DIR_NAME . '/v
     <div id="map_canvas"></div>
     
     
-    <?php if( $header == true ) : ?>
+    
         <!-- topbar -->
         <div class="topbar" id="topbar">
           <div class="wrapper">
@@ -420,7 +420,7 @@ $url_base = get_bloginfo('url') . '/wp-content/plugins/' . PLUGIN_DIR_NAME . '/v
             </div>
           </div>
         </div>
-    <?php endif; ?>
+    
     
     <?php //if ( $header == true ) : ?>   
     <!-- right-side gutter -->
@@ -447,7 +447,7 @@ $url_base = get_bloginfo('url') . '/wp-content/plugins/' . PLUGIN_DIR_NAME . '/v
             
             <?php 
             foreach($item_to_map as $itm) {
-                foreach()
+                //foreach()
                 echo "
                   <li class='".$marker[type]."'>
                     <a href='#' onMouseOver=\"markerListMouseOver('".$marker_id."')\" onMouseOut=\"markerListMouseOut('".$marker_id."')\" onClick=\"goToMarker('".$marker_id."');\">".$marker[title]."</a>
