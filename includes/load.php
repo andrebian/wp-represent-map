@@ -13,3 +13,6 @@ require 'admin/ajax-actions.php';
 
 // Meta boxes
 require 'admin/meta-boxes.php';
+
+// Including Shortcodes
+require 'theme/shortcodes/load-shortcodes.php';
