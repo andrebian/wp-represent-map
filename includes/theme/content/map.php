@@ -117,7 +117,6 @@
 
         //########################################
         // Here is the magical
-
         <?php if ( !empty($posts) ) :
             foreach($posts as $post) :
                 $lat_lng = explode(',',get_post_meta($post->ID, '_wp_represent_map_lat_lng', true));
@@ -126,13 +125,6 @@
                 echo "markers.push(['".$post->post_title."', '".$type."', '".$lat."', '".$lng."', '".$post->post_title."', '".$post->post_title."', '".get_post_meta($post->ID, '_wp_represent_map_address', true)."']);";
             endforeach;
         endif; ?>
-//        markers.push(['Casa do Andre', 'outdoor', '-25.4447741', '-49.2291509', 'Teste', 'teste', 'Rua Miguel Caluf, 241, Cajuru']);
-//
-//        markers.push(['Trabalho do Andre', 'startup', '-25.495249', '-49.288399', 'Teste', 'teste', 'Rua José Cadilhe, 1283 Água Verde']);
-//
-//        markers.push(['Casa antiga', 'hackerspace', '-26.226199', '-51.098622', 'Teste', 'teste', 'Av Manoel Ribas 420, União da Vitória Paraná CEP 84600-000']);
-
-
         // Here is the magical
         //########################################
 
