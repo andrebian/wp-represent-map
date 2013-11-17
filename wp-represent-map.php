@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Represent Map
-Plugin URI: 
+Plugin URI: https://bitbucket.org/andrebian/wp-represent-map
 Description: Allow represent map pins management in wordpress
 Version: 1.0.0
 Author: Andre Cardoso aka andrebian
@@ -10,15 +10,28 @@ Text Domain: wp-represent-map
 License: GPLv2
 */
 
+/*
+ * Calling all required load files
+ * 
+ * The file bellow will call any another needed file for the plugin
+ */
 require 'includes/load.php';
 
+
+/*
+ * Adding a custom options page
+ * 
+ * Options will be improved yet, by the moment just the default city
+ * and lat lng is able to configure
+ */
 add_action('admin_menu', 'wp_represent_map_options_page');
 function wp_represent_map_options_page() 
 {
-        add_options_page( 'WP Represent Map', 'WP Represent Map', 7, __FILE__, 'manage_options_for_wp_represent_map');
+    add_options_page( 'WP Represent Map', 'WP Represent Map', 7, __FILE__, 'manage_options_for_wp_represent_map');  
 }
 
 
+// Define the custom post type
 function type_post_represent_map() {
         $labels = array(
                 'name' => __( 'Map items', 'wp-represent-map' ),
@@ -65,9 +78,17 @@ function type_post_represent_map() {
 add_action( 'init', 'type_post_represent_map' );
 
 
-/* Translation files */
+/**
+ * Translation files 
+ */
 load_plugin_textdomain( 'wp-represent-map', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
+
+/**
+ * Adding the meta boxes
+ * 
+ * All meta boxes will be called from here
+ */
 function wp_represent_map_custom_boxes()
 {
     add_meta_box('meta_box_item_map_info', __('Item info', 'wp-represent-map'), 'meta_box_item_map_info', 'represent_map', 'side', 'default');
@@ -76,6 +97,10 @@ add_action('add_meta_boxes', 'wp_represent_map_custom_boxes');
 add_action( 'save_post', 'meta_box_item_map_info_save' );
 
 
-// Ajax Call
+/**
+ * Ajax call
+ * 
+ * All the actions performed by ajax will be called from here
+ */
 add_action( 'wp_ajax_get_lat_lng', 'get_lat_lng' );
 add_action( 'wp_ajax_nopriv_get_lat_lng', 'get_lat_lng' );

@@ -1,5 +1,16 @@
 <?php
+/**
+ * Groups all meta boxes
+ * 
+ * @since 1.0.0
+ */
 
+
+/**
+ * Item info
+ * 
+ * @since 1.0.0
+ */
 function meta_box_item_map_info()
 { 
     $post = func_get_arg(0);
@@ -35,7 +46,12 @@ function meta_box_item_map_info()
 <?php 
 }
 
-
+/**
+ * Saving item info
+ * 
+ * @param int $post_id
+ * @since 1.0.0
+ */
 function meta_box_item_map_info_save($post_id)
 {
     if ( isset($_POST['_wp_represent_map_address']) ) {

@@ -1,5 +1,16 @@
 <?php
+/**
+ * Options page
+ * 
+ * @since 1.0.0
+ */
 
+
+/**
+ * Management for options
+ * 
+ * @since 1.0.0
+ */
 function manage_options_for_wp_represent_map()
 {
     if ( isset($_POST['_wp_represent_map_default_city']) ) {

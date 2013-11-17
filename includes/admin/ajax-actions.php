@@ -1,5 +1,16 @@
 <?php
+/**
+ * Groups all ajax actions
+ * 
+ * @since 1.0.0
+ */
 
+
+/**
+ * Takes the latitude and logintude from an address
+ * 
+ * @since 1.0.0
+ */
 function get_lat_lng()
 {
     $url_vendor_map = 'http://maps.googleapis.com/maps/api/geocode/json';
