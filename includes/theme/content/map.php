@@ -35,65 +35,7 @@
 
     // initialize map
     function initialize() {
-        // set map styles
-        var mapStyles = [
-            {
-                featureType: "road",
-                elementType: "geometry",
-                stylers: [
-                    {hue: "#8800ff"},
-                    {lightness: 100}
-                ]
-            }, {
-                featureType: "road",
-                stylers: [
-                    {visibility: "on"},
-                    {hue: "#91ff00"},
-                    {saturation: -62},
-                    {gamma: 1.98},
-                    {lightness: 45}
-                ]
-            }, {
-                featureType: "water",
-                stylers: [
-                    {hue: "#005eff"},
-                    {gamma: 0.72},
-                    {lightness: 42}
-                ]
-            }, {
-                featureType: "transit.line",
-                stylers: [
-                    {visibility: "off"}
-                ]
-            }, {
-                featureType: "administrative.locality",
-                stylers: [
-                    {visibility: "on"}
-                ]
-            }, {
-                featureType: "administrative.neighborhood",
-                elementType: "geometry",
-                stylers: [
-                    {visibility: "simplified"}
-                ]
-            }, {
-                featureType: "landscape",
-                stylers: [
-                    {visibility: "on"},
-                    {gamma: 0.41},
-                    {lightness: 46}
-                ]
-            }, {
-                featureType: "administrative.neighborhood",
-                elementType: "labels.text",
-                stylers: [
-                    {visibility: "on"},
-                    {saturation: 33},
-                    {lightness: 20}
-                ]
-            }
-        ];
-
+        
         // set map options
         var myOptions = {
             zoom: 13,
@@ -119,10 +61,18 @@
         // Here is the magical
         <?php if ( !empty($posts) ) :
             foreach($posts as $post) :
+                
+                // Improve a better code bellow
+                if ( isset($post->types[0]) ) {
+                    $icon_type = $post->types[0];
+                } else {
+                    @$icon_type = $type;
+                }
+            
                 $lat_lng = explode(',',get_post_meta($post->ID, '_wp_represent_map_lat_lng', true));
                 $lat = $lat_lng[0];
                 $lng = $lat_lng[1];
-                echo "markers.push(['".$post->post_title."', '".$type."', '".$lat."', '".$lng."', '".$post->post_title."', '".$post->post_title."', '".get_post_meta($post->ID, '_wp_represent_map_address', true)."']);";
+                echo "markers.push(['".$post->post_title."', '".$icon_type."', '".$lat."', '".$lng."', '".$post->post_title."', '".$post->post_title."', '".get_post_meta($post->ID, '_wp_represent_map_address', true)."']);";
             endforeach;
         endif; ?>
         // Here is the magical
