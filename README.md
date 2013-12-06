@@ -11,3 +11,6 @@ finalidade de gerenciar dentro do wordpress eliminando o sistema original.
 
 O desenvolvimento ainda está no início e agradeço qualquer ajuda para 
 que seja criada uma ferramenta completa.
+
+
+Para contribuir leia o arquivo CONTRIBUTING.md
