@@ -1,16 +1,15 @@
 Wp represent map
 ================
 
-Plugin para wordpress baseado no Represent Map (https://github.com/abenzer/represent-map)
+Wordpress plugin based on Represent Map (https://github.com/abenzer/represent-map)
 
-O represent map é um sistema completo para manipulação de 
-pontos de startups no mapa utilizando a API do Google Maps.
-Este plugin usa a essência do Represent Map original com a 
-finalidade de gerenciar dentro do wordpress eliminando o sistema original.
+The original represent map is a system to manage startups 
+pin on maps using Google Maps API.
 
+This plugin is inspired on the original Represent Map providing 
+the wordpress admin management.
 
-O desenvolvimento ainda está no início e agradeço qualquer ajuda para 
-que seja criada uma ferramenta completa.
+I am just starting the development and would be very happy if anyone 
+can help to create an awesome tool.
 
-
-Para contribuir leia o arquivo CONTRIBUTING.md
+If you want to contribute, please read CONTRIBUTING.md file
