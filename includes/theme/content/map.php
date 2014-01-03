@@ -7,6 +7,9 @@
         margin: 0px;
         padding: 0px
     }
+    
+    // Very important to show zoom control correctly in wordpress themes
+    #map-canvas img { max-width: none; }
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=pt_BR"></script>
