@@ -54,7 +54,11 @@
             panControl: false,
             zoomControl: true,
             zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.LARGE,
+                <?php if ( true == $all_map_items ) : ?>
+                        style: google.maps.ZoomControlStyle.LARGE,
+                <?php else : ?>
+                        style: google.maps.ZoomControlStyle.SMALL,
+                <?php endif; ?>    
                 position: google.maps.ControlPosition.LEFT_BOTTOM
             }
         };
