@@ -293,14 +293,14 @@
           endforeach; 
           
         ?>
-              <li class="attribution">
+              <!--<li class="attribution">
                       <!-- per our license, you may not remove this line -->
 
-                      Criado com <a target="_blank" href="https://github.com/abenzer/represent-map">RepresentMap</a> por<br>
+                      <!--Criado com <a target="_blank" href="https://github.com/abenzer/represent-map">RepresentMap</a> por<br>
                       <a target="_blank" href="http://www.twitter.com/abenzer">@abenzer</a> +
                       <a target="_blank" href="http://www.twitter.com/tara">@tara</a> +
                       <a target="_blank" href="http://www.twitter.com/seanbonner">@seanbonner</a>
-              </li>
+              </li>-->
       </ul>
     </div>
 <?php endif; ?>
