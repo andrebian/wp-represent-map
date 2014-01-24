@@ -16,3 +16,13 @@ require 'admin/meta-boxes.php';
 
 // Including Shortcodes
 require 'theme/shortcodes/load-shortcodes.php';
+
+
+// Including path configurations
+require 'general/path-creation.php';
+
+
+// including upload
+if ( is_admin() ) {
+    require '../wp-content/plugins/wp-represent-map/classes/Upload.php';
+}

@@ -3,5 +3,5 @@
  * Groups all required files to shortcodes
  */
 
-// Single map
-require 'shortcode-single-map.php';
+// Default map
+require 'shortcode-represent-map.php';

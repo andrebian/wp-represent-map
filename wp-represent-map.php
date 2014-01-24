@@ -3,7 +3,7 @@
 Plugin Name: WP Represent Map
 Plugin URI: https://bitbucket.org/andrebian/wp-represent-map
 Description: Allow represent map pins management in wordpress
-Version: 1.0.0
+Version: 0.1
 Author: Andre Cardoso aka andrebian
 Author URI: http://andrebian.com
 Text Domain: wp-represent-map
