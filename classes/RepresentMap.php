@@ -47,10 +47,11 @@ class RepresentMap
     {
         if ( !empty($this->type) ) {
             $args = array(
+                'post_type' => 'represent_map',
                 'tax_query' => array(
                     array(
                         'taxonomy' => 'represent_map_type',
-                        'field' => 'name',
+                        'field' => 'slug',
                         'terms' => $this->type
                     )
                 )
