@@ -47,18 +47,18 @@
         // set map options
         var myOptions = {
             zoom: 12,
-            center: new google.maps.LatLng(<?php echo $lat_lng; ?>),
+            center: new google.maps.LatLng(<?php if ( true === $all_map_items ) echo $lat_lng; else echo get_post_meta($posts[0]->ID, '_wp_represent_map_lat_lng', true) ?>),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             streetViewControl: false,
             mapTypeControl: true,
             panControl: false,
             zoomControl: true,
             zoomControlOptions: {
-                <?php if ( true == $all_map_items ) : ?>
-                        style: google.maps.ZoomControlStyle.LARGE,
+                <?php if ( true === $all_map_items ) : ?>
+                    style: google.maps.ZoomControlStyle.LARGE,               
                 <?php else : ?>
-                        style: google.maps.ZoomControlStyle.SMALL,
-                <?php endif; ?>    
+                    style: google.maps.ZoomControlStyle.SMALL,                   
+                <?php endif; ?>
                 position: google.maps.ControlPosition.LEFT_BOTTOM
             }
         };

@@ -27,7 +27,9 @@ function represent_map( $type = null )
     
     $all_map_items = $rm->setType( $type );
     $args = $rm->getArgs();
-    
+//    print_r($args);
+//    
+//    die();
     $posts = query_posts($args);
     
     /**
