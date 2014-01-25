@@ -1,15 +1,15 @@
 <?php
 /**
- * Groups all meta boxes
+ * Groups all meta boxes from WP Represent Map
  * 
- * @since 1.0.0
+ * @since 0.1
  */
 
 
 /**
  * Item info
  * 
- * @since 1.0.0
+ * @since 0.1
  */
 function meta_box_item_map_info()
 { 
@@ -50,15 +50,17 @@ function meta_box_item_map_info()
  * Saving item info
  * 
  * @param int $post_id
- * @since 1.0.0
+ * @since 0.1
  */
-function meta_box_item_map_info_save($post_id)
+function meta_box_item_map_info_save( $post_id )
 {
     if ( isset($_POST['_wp_represent_map_address']) ) {
-        update_post_meta($post_id, '_wp_represent_map_address', $_POST['_wp_represent_map_address']);
+        $wp_represent_map_addres = filter_input(INPUT_POST, '_wp_represent_map_address', FILTER_SANITIZE_STRING);
+        update_post_meta($post_id, '_wp_represent_map_address', $wp_represent_map_addres);
     }
     
     if ( isset($_POST['_wp_represent_map_lat_lng']) ) {
-        update_post_meta($post_id, '_wp_represent_map_lat_lng', $_POST['_wp_represent_map_lat_lng']);
+        $wp_represent_map_lat_lng = filter_input(INPUT_POST, '_wp_represent_map_lat_lng', FILTER_SANITIZE_STRING);
+        update_post_meta($post_id, '_wp_represent_map_lat_lng', $wp_represent_map_lat_lng);
     }
 }
