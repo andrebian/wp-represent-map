@@ -1,0 +1,23 @@
+{
+    "name": "andrebian/wp-represent-map",
+    "description": "Represent Map Plugin for Wordpress",
+    "type": "wordpress-plugin",
+    "keywords": [
+        "wordpress",
+        "google maps",
+        "represent map"
+    ],
+    "authors": [
+        {
+            "name": "Andre Cardoso",
+            "homepage": "http://andrebian.com",
+            "role": "Author"
+        }
+    ],        
+    "homepage": "https://github.com/andrebian/wp-represent-map",
+    "license": "GPLv2",
+    "require": {
+        "php": ">=5.3.3",
+        "composer/installers": "*"        
+    }        
+}
