@@ -1,54 +1,69 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2;plural=n>1;\n"
 
-# Plugin description
-msgid "Allow represent map pins management in wordpress"
+
+#. Description of the plugin/theme
+msgid ""
+"Allow represent map pins management in wordpress"
 msgstr ""
 
-# Options
+# Options / Default Location
 msgid "Wp Represent Map Settings"
 msgstr ""
 
-# Options
+
+# Options / Default Location
 msgid "Change your location and another stuffs"
 msgstr ""
 
-# Options
+# Options / Default Location
 msgid "Settings"
 msgstr ""
 
-# Options
+# Options / Default Location
 msgid "Default City"
 msgstr ""
 
-# Options
+# Options / Default Location
 msgid "Default Lat Lng"
 msgstr ""
 
-# Options
+# Options / Default Location
 msgid "Lat and Long is need to determine the center of the map on default screen"
 msgstr ""
 
-# Options
+# Options / Default Location
 msgid "How I discover Lat Lng?"
 msgstr ""
 
-# Options
+# Options / Default Location
 msgid "Go at http://maps.google.com.br and follow these steps "
 "<br />1: type your location, browse to center map where you want"
 "<br />2: at the options click in a chain icon, browse in the link has open at his side, "
 <br />copy the values like the step 3"
 msgstr ""
 
-
-# Options
+# Options / General
 msgid "Save Changes"
 msgstr ""
 
-# Options
+# Options / General
 msgid "Options saved with success"
 msgstr ""
 
-# Options
+# Options / General
 msgid "No changes made"
+msgstr ""
+
+# Options
+msgid "Markers"
+msgstr ""
+
+msgid "Default coordenates"
 msgstr ""
 
 # Post type
@@ -68,7 +83,7 @@ msgid "Add item"
 msgstr ""
 
 # Post type
-msgid "No register found in trash"
+msgid "New item"
 msgstr ""
 
 # Post type
@@ -91,7 +106,6 @@ msgstr ""
 msgid "No register found in trash"
 msgstr ""
 
-# Post type Taxonomy
 msgid "Type"
 msgstr ""
 
@@ -99,11 +113,94 @@ msgstr ""
 msgid "Item info"
 msgstr ""
 
-
 # Post Meta Box
 msgid "Address"
 msgstr ""
 
 # Post Meta Box
 msgid "LatLng"
+msgstr ""
+
+# Options
+msgid "Current markers"
+msgstr ""
+
+# Options
+msgid "Name"
+msgstr ""
+
+# Options
+msgid "Icon"
+msgstr ""
+
+# Options
+msgid "Default Marker"
+msgstr ""
+
+# Options
+msgid "Not pin yet"
+msgstr ""
+
+# Options
+msgid "Actions"
+msgstr ""
+
+# Options
+msgid "Delete"
+msgstr ""
+
+# Options
+msgid "Are you sure you want to delete the item icon?"
+msgstr ""
+
+#Options / Markers
+msgid "The uploaded file has an error and is not possible to move to destination"
+msgstr ""
+
+#Options / Markers
+msgid "The uploaded file type is not allowed"
+msgstr ""
+
+#Options / Markers
+msgid "Fail to upload the file. Info: %s"
+msgstr ""
+
+#Options / Markers
+msgid "Create or update a pin"
+msgstr ""
+
+#Options / Markers
+msgid "Link to: "
+msgstr ""
+
+#Options / Markers
+msgid "Default"
+msgstr ""
+
+#Options / Markers
+msgid "Pin uploaded with success"
+msgstr ""
+
+#Options / Markers
+msgid "Pin removed with success"
+msgstr ""
+
+#Options / Markers
+msgid "This will override the current pin if exists. Do you wish continue?"
+msgstr ""
+
+#Options / Markers
+msgid "Info:"
+msgstr ""
+
+#Options / Markers
+msgid "Image type: "
+msgstr ""
+
+#Options / Markers
+msgid "Max width: "
+msgstr ""
+
+#Options / Markers
+msgid "Max height: "
 msgstr ""
