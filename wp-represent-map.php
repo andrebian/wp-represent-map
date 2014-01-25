@@ -12,6 +12,10 @@ License: GPLv2
 
 define('PLUGIN_DIR_NAME', 'wp-represent-map');
 
+if ( !defined('BLOG_URI') ) {
+    define('BLOG_URI', get_bloginfo('url'));
+}
+
 /*
  * Calling all required load files
  */

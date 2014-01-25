@@ -2,18 +2,18 @@
 /**
  * Options page
  * 
- * @since 1.0.0
+ * @since 0.1
  */
 
 
 /**
  * Management for options
  * 
- * @since 1.0.0
+ * @since 0.1
  */
 function manage_options_for_wp_represent_map()
 {
-    $errors = '';
+    $errors = array();
     $upload = new Upload();
         
     $wp_upload_dir = wp_upload_dir();
@@ -21,15 +21,19 @@ function manage_options_for_wp_represent_map()
     $upload->appendAllowedType('image/png');
     
     
-    if (isset($_POST)) {
-        if (isset($_POST['_wp_represent_map_default_city'])) {
+    if ( isset($_POST) ) {
+        
+        if ( isset($_POST['_wp_represent_map_default_city']) ) {
 
+            $wp_represent_map_default_city = filter_input(INPUT_POST, '_wp_represent_map_default_city', FILTER_SANITIZE_STRING);
+            $wp_represent_map_default_lat_lng = filter_input(INPUT_POST, '_wp_represent_map_default_lat_lng', FILTER_SANITIZE_STRING);
+            
             $option_data = array(
-                '_wp_represent_map_default_city' => $_POST['_wp_represent_map_default_city'],
-                '_wp_represent_map_default_lat_lng' => $_POST['_wp_represent_map_default_lat_lng'],
+                '_wp_represent_map_default_city' => $wp_represent_map_default_city,
+                '_wp_represent_map_default_lat_lng' => $wp_represent_map_default_lat_lng,
             );
 
-            if (update_option('wp-represent-map', $option_data)) {
+            if ( update_option('wp-represent-map', $option_data) ) {
                 echo '<br /><div class="update-nag">' . __('Options saved with success', 'wp-represent-map') . '</div>';
             } else {
                 echo '<br /><div class="update-nag">' . __('No changes made', 'wp-represent-map') . '</div>';
@@ -55,7 +59,7 @@ function manage_options_for_wp_represent_map()
     }
     
     if ( isset($_GET['delete']) && !empty($_GET['delete']) ) {
-        $delete = base64_decode($_GET['delete']);
+        $delete = base64_decode(filter_input(INPUT_GET, 'delete', FILTER_SANITIZE_STRING));
         $upload->removeFile( $delete . '.png' );
         
         $removeErrors = $upload->getErrors();
@@ -80,23 +84,7 @@ function manage_options_for_wp_represent_map()
     $options_values = get_option('wp-represent-map');
     ?>
 
-<style>
-    #markers{
-        display: none;
-    }
-    
-    table.options th, table.options td{
-        border: #ccc solid 1px;
-        text-align: center;
-    }
-    table.options th{
-        height: 30px;
-        background-color: #eee;
-    }
-    .options {
-        width: 70% !important;
-    } 
-</style>
+    <link rel="stylesheet" href="<?php echo get_bloginfo('url'); ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/css/represent-map.css" />
 
     <div class="wrap">
         <div id="icon-options-general" class="icon32"><br></div>
@@ -124,7 +112,7 @@ function manage_options_for_wp_represent_map()
                     <p><?php echo __('Change your location and another stuffs', 'wp-represent-map'); ?></p>
 
                     <h3><?php echo __('Settings', 'wp-represent-map'); ?></h3>
-                    <table class="form-table permalink-structure" style="width: 40%; float: left;">
+                    <table class="form-table permalink-structure permalink-structure-wp-represent-map">
                         <tbody>
                             <tr>
                                 <th>
@@ -153,9 +141,9 @@ function manage_options_for_wp_represent_map()
                                     </a>
                                 </td>
                             </tr>
-                            <tr id="TipLatLng" style="display:none;">
+                            <tr id="TipLatLng">
                                 <td colspan="2">
-                                    <div class="update-nag" style="border-radius: 5px; padding:10px;">
+                                    <div class="update-nag update-nag-wp-represent-map">
                                         <?php echo __('Go at http://maps.google.com.br and follow these steps <br />1: type your location, browse to center map where you want<br />2: at the options click in a chain icon, browse in the link has open at his side, <br />copy the values like the step 3', 'wp-represent-map'); ?>
                                         <br />
                                         <img src="../wp-content/plugins/wp-represent-map/assets/img/map-lat-lng.png">
@@ -177,7 +165,6 @@ function manage_options_for_wp_represent_map()
                 
                 <?php 
                     $icons = array();
-                    $base_uri = get_bloginfo('url');
                     
                     $path = opendir('../wp-content/uploads/map-icons');
                     while( $file = readdir( $path ) ) {
@@ -185,6 +172,7 @@ function manage_options_for_wp_represent_map()
                             $icons[$file] = $file;
                         } 
                     }
+                    closedir($path);
                 ?>
                 
                 <form action="" name="markers" method="post" enctype="multipart/form-data">
@@ -194,7 +182,8 @@ function manage_options_for_wp_represent_map()
                     <select name="map_type">
                         <option value="default.png"><?php echo __('Default', 'wp-represent-map'); ?></option>
                         <?php 
-                            if ( $terms = get_terms('represent_map_type') ) : ?>
+                            $terms = get_terms('represent_map_type');
+                            if ( !empty($terms) ) : ?>
                                 <?php foreach( $terms as $t ) : ?>
                                     <option value="<?php echo $t->slug; ?>.png"><?php echo $t->name; ?></option>
                                 <?php endforeach; ?>
@@ -231,7 +220,7 @@ function manage_options_for_wp_represent_map()
                         <tr>
                             <td><?php echo __('Default Marker', 'wp-represent-map'); ?></td>
                             <td>
-                                <img src="<?php echo $base_uri; ?>/wp-content/uploads/map-icons/default.png" >
+                                <img src="<?php echo BLOG_URI; ?>/wp-content/uploads/map-icons/default.png" >
                             </td>
                             <td>---</td>
                         </tr>
@@ -243,7 +232,7 @@ function manage_options_for_wp_represent_map()
                                 <td>
                                     <?php if ( array_key_exists($t->slug . '.png', $icons) 
                                             && file_exists('../wp-content/uploads/map-icons/' . $icons[$t->slug . '.png'] ) ) : ?>
-                                        <img src="<?php echo $base_uri; ?>/wp-content/uploads/map-icons/<?php echo $icons[$t->slug . '.png']; ?>" >
+                                        <img src="<?php echo BLOG_URI; ?>/wp-content/uploads/map-icons/<?php echo $icons[$t->slug . '.png']; ?>" >
                                     <?php else : ?>
                                         <?php echo __('Not pin yet', 'wp-represent-map'); ?>
                                     <?php endif; ?>
