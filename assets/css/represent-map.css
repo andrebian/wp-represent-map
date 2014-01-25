@@ -5,7 +5,7 @@ html, body, #map-canvas {
         float: left;
     }
     
-    /* importantíssimo para que o controle de zoom não quebre em temas do wordpress */
+    /* very important to zoom control in map */
     #map-canvas img { max-width: none; }
     
     .infowindow-content{
