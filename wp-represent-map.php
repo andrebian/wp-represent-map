@@ -34,7 +34,7 @@ if ( !defined('BLOG_URI') ) {
 
 
     // Including path configurations
-    require 'includes/general/path-creation.php';
+    require 'includes/general/creation-path-to-uploads.php';
 
 
     // including upload
