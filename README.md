@@ -12,6 +12,11 @@ the wordpress admin management. The same functionality inside Wordpress.
 INSTALLATION
 ==========
 
+Composer
+--------
+
+    "andrebian/wp-represent-map": "dev-master"
+
 Cloning
 ------
  Clone this repository into your wp-content/plugins path keeeping the wp-represent-map path name and enable it on Wordpress admin panel.
