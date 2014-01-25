@@ -1,6 +1,6 @@
 <?php
 /**
- * Groups all ajax actions
+ * Groups all ajax actions from WP Represent Map
  * 
  * @since 1.0.0
  */
