@@ -14,10 +14,29 @@ define('PLUGIN_DIR_NAME', 'wp-represent-map');
 
 /*
  * Calling all required load files
- * 
- * The file bellow will call any another needed file for the plugin
  */
-require 'includes/load.php';
+
+    // Options page
+    require 'includes/admin/options.php';
+
+    // Ajax call
+    require 'includes/admin/ajax-actions.php';
+
+    // Meta boxes
+    require 'includes/admin/meta-boxes.php';
+
+    // Including Shortcodes
+    require 'includes/theme/shortcodes/load-shortcodes.php';
+
+
+    // Including path configurations
+    require 'includes/general/path-creation.php';
+
+
+    // including upload
+    if ( is_admin() ) {
+        require '../wp-content/plugins/' . PLUGIN_DIR_NAME . '/classes/Upload.php';
+    }
 
 
 /*
