@@ -24,6 +24,22 @@ Download it as zip, unzip into your wp-content/plugins path keeping the wp-repre
 USAGE
 ======
 
+Indispensable
+--------------
+On your functions.php put the following code:
+
+    /* Single item height in pixels */
+    if ( !defined('SINGLE_HEIGHT_MAP') ) {
+        define('SINGLE_HEIGHT_MAP', '150PX');
+    }
+
+    /* Full map height in pixels */
+    if ( !defined('ALL_HEIGHT_MAP') ) {
+        define('ALL_HEIGHT_MAP', '560px');
+    }
+
+After this follow the steps bellow.
+
 Admin Panel
 ----------
 Configure your default location and default lat lng in **Settings/Wp Represent** Map admin page. After this create your item types in **Map Items/Type** on wordpress admin panel. Now just create your Map items providing the correct address and selecting which is the type of it.
