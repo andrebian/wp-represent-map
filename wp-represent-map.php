@@ -30,7 +30,7 @@ if ( !defined('BLOG_URI') ) {
     require 'includes/admin/meta-boxes.php';
 
     // Including Shortcodes
-    require 'includes/theme/shortcodes/load-shortcodes.php';
+    require 'includes/shortcodes/shortcode-represent-map.php';
 
 
     // Including path configurations

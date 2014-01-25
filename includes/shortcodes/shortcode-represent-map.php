@@ -1,8 +1,8 @@
 <?php
 /**
- * Shows the represent map
+ * Calls the represent map
  * 
- * @since 1.0.0
+ * @since 0.1
  */
 
 $dir = '';
@@ -19,7 +19,7 @@ require $dir . './wp-content/plugins/' . PLUGIN_DIR_NAME . '/classes/RepresentMa
  * 
  * @param string $type
  * 
- * @since 1.0.0
+ * @since 0.1
  */
 function represent_map( $type = null )
 {
@@ -27,13 +27,11 @@ function represent_map( $type = null )
     
     $all_map_items = $rm->setType( $type );
     $args = $rm->getArgs();
-//    print_r($args);
-//    
-//    die();
+
     $posts = query_posts($args);
     
     /**
-     * Overriden $type 
+     * Overritten $type 
      */
     $type = $rm->getType();
     
@@ -43,12 +41,10 @@ function represent_map( $type = null )
         $cont = 0;
         foreach($posts as $post) {
             
-            $types = array();
-            if ( $terms = wp_get_post_terms( $post->ID, 'represent_map_type' ) ) {
-                foreach($terms as $term) {
-                    $types[] = $term->slug;
-                }
-            }
+            
+            $terms = wp_get_post_terms( $post->ID, 'represent_map_type' );
+            $types = _process_terms( $terms );
+            
             $temp_posts[$cont] = $post;
             @$temp_posts[$cont]->types = $types;
             
@@ -57,8 +53,7 @@ function represent_map( $type = null )
         $posts = $temp_posts;
     }
     
-    $blog_uri = get_bloginfo('url');
-    $url_base = $blog_uri . '/wp-content/uploads/map-icons/';
+    $url_base = BLOG_URI . '/wp-content/uploads/map-icons/';
     
     $options = get_option('wp-represent-map');
     
@@ -66,12 +61,32 @@ function represent_map( $type = null )
     $height_map = (true === $all_map_items) ? ALL_HEIGHT_MAP : SINGLE_HEIGHT_MAP;
     $width_map = (true === $all_map_items) ? '80%' : '100%';
     
-    require './wp-content/plugins/wp-represent-map/includes/theme/content/map.php';
+    require './wp-content/plugins/' . PLUGIN_DIR_NAME . '/includes/theme/map.php';
     
 }
 
 
+/**
+ * 
+ * @param array $terms
+ * @return array
+ */
+function _process_terms( $terms )
+{
+    $types = array();
+    if (!empty($terms)) {
+        foreach ($terms as $term) {
+            $types[] = $term->slug;
+        }
+    }
+    
+    return $types;
+}
 
+/**
+ * 
+ * @param array $type
+ */
 function _map_type( $type ) 
 {
     if ( !empty($type) ) {

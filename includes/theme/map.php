@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="<?php echo $blog_uri; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/css/represent-map.css" >
+<link rel="stylesheet" href="<?php echo BLOG_URI; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/css/represent-map.css" >
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=pt_BR"></script>
-<script src="<?php echo $blog_uri; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/js/bootstrap-typeahead.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="<?php echo $blog_uri; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/js/label.js"></script>
+<script src="<?php echo BLOG_URI; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/js/bootstrap-typeahead.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo BLOG_URI; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/js/label.js"></script>
 <style>
     #map-canvas { 
         height: <?php echo $height_map; ?>; 
@@ -113,7 +113,7 @@
             }
 
             // build this marker
-            var markerImage = new google.maps.MarkerImage("<?php echo get_bloginfo('url'); ?>/wp-content/uploads/map-icons/" + val[1] + ".png", null, null, null, iconSize);
+            var markerImage = new google.maps.MarkerImage("<?php echo BLOG_URI; ?>/wp-content/uploads/map-icons/" + val[1] + ".png", null, null, null, iconSize);
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(val[2], val[3]),
                 map: map,
