@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: WP Represent Map
-Plugin URI: https://bitbucket.org/andrebian/wp-represent-map
-Description: Allow represent map pins management in wordpress
+Plugin URI: https://github.com/andrebian/wp-represent-map
+Description: Allow represent map pins management in wordpress. This plugin was inspired on original Represent Map (https://github.com/abenzer/represent-map)
 Version: 0.1
 Author: Andre Cardoso aka andrebian
 Author URI: http://andrebian.com
