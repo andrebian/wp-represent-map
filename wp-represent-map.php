@@ -7,7 +7,7 @@ Version: 0.2
 Author: Andre Cardoso aka andrebian
 Author URI: http://andrebian.com
 Text Domain: wp-represent-map
-License: GPLv2
+License: Creative Commons (http://creativecommons.org/licenses/by-sa/2.0/)
 */
 
 define('PLUGIN_DIR_NAME', 'wp-represent-map');
