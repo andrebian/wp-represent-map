@@ -124,17 +124,18 @@ add_action( 'save_post', 'meta_box_item_map_info_save' );
 
 
 /**
- * Enqueue all necessary scripts to Represent Map
+ * Enqueue all necessary scripts and styles to Represent Map
  */
-function wp_represent_map_scripts() {
+function wp_represent_map_scripts() 
+{
 	wp_enqueue_style( 'represent-map', BLOG_URI . DS . 'wp-content' . DS . 'plugins' . DS . PLUGIN_DIR_NAME . DS . 'assets' . DS . 'css' . DS . 'represent-map.css' );
 
 	wp_enqueue_script( 'jquery.min', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' );
 	wp_enqueue_script( 'google.maps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=pt_BR' );
 	wp_enqueue_script( 'typeahead', BLOG_URI . DS . 'wp-content' . DS . 'plugins' . DS . PLUGIN_DIR_NAME . DS . 'assets' . DS . 'js' . DS . 'bootstrap-typeahead.js' );
 	wp_enqueue_script( 'label', BLOG_URI . DS . 'wp-content' . DS . 'plugins' . DS . PLUGIN_DIR_NAME . DS . 'assets' . DS . 'js' . DS . 'label.js' );
+	
 }
-
 add_action( 'wp_enqueue_scripts', 'wp_represent_map_scripts' );
 
 
