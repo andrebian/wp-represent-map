@@ -204,3 +204,11 @@ msgstr ""
 #Options / Markers
 msgid "Max height: "
 msgstr ""
+
+# Map credits
+msgid "Created with "
+msgstr ""
+
+# Map credits
+msgid "by"
+msgstr ""

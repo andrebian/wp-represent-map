@@ -192,3 +192,11 @@ msgstr "Largura máxima: "
 
 msgid "Max height: "
 msgstr "Altura máxima: "
+
+# Map credits
+msgid "Created with "
+msgstr "Criado com "
+
+# Map credits
+msgid "by"
+msgstr "por"

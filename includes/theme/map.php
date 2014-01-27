@@ -1,8 +1,3 @@
-<link rel="stylesheet" href="<?php echo BLOG_URI; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/css/represent-map.css" >
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=pt_BR"></script>
-<script src="<?php echo BLOG_URI; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/js/bootstrap-typeahead.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="<?php echo BLOG_URI; ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/js/label.js"></script>
 <style>
     #map-canvas { 
         height: <?php echo $height_map; ?>; 
@@ -297,14 +292,18 @@
           endforeach; 
           
         ?>
-              <!--<li class="attribution">
+              <li class="attribution">
                       <!-- per our license, you may not remove this line -->
 
-                      <!--Criado com <a target="_blank" href="https://github.com/abenzer/represent-map">RepresentMap</a> por<br>
+                      <?php echo __('Created with ', 'wp-represent-map'); ?>
+					  <a target="_blank" href="https://github.com/abenzer/represent-map">
+						  RepresentMap
+					  </a>&nbsp;
+					  <?php echo __('by', 'wp-represent-map'); ?><br>
                       <a target="_blank" href="http://www.twitter.com/abenzer">@abenzer</a> +
                       <a target="_blank" href="http://www.twitter.com/tara">@tara</a> +
                       <a target="_blank" href="http://www.twitter.com/seanbonner">@seanbonner</a>
-              </li>-->
+              </li>
       </ul>
     </div>
 <?php endif; ?>
