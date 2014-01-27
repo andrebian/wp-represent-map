@@ -11,6 +11,7 @@ License: GPLv2
 */
 
 define('PLUGIN_DIR_NAME', 'wp-represent-map');
+define('DS', DIRECTORY_SEPARATOR);
 
 if ( !defined('BLOG_URI') ) {
     define('BLOG_URI', get_bloginfo('url'));
@@ -21,25 +22,25 @@ if ( !defined('BLOG_URI') ) {
  */
 
     // Options page
-    require 'includes/admin/options.php';
+    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'includes' . DS . 'admin' . DS . 'options.php';
 
     // Ajax call
-    require 'includes/admin/ajax-actions.php';
+    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'admin' . DS . 'ajax-actions.php';
 
     // Meta boxes
-    require 'includes/admin/meta-boxes.php';
+    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'admin' . DS . 'meta-boxes.php';
 
     // Including Shortcodes
-    require 'includes/shortcodes/shortcode-represent-map.php';
+    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'shortcodes' . DS . 'shortcode-represent-map.php';
 
 
     // Including path configurations
-    require 'includes/general/creation-path-to-uploads.php';
+    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'general'. DS .'creation-path-to-uploads.php';
 
 
     // including upload
     if ( is_admin() ) {
-        require '../wp-content/plugins/' . PLUGIN_DIR_NAME . '/classes/Upload.php';
+        require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'classes' . DS . 'Upload.php';
     }
 
 

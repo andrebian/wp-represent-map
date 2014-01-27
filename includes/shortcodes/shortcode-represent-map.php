@@ -5,12 +5,7 @@
  * @since 0.1
  */
 
-$dir = '';
-if ( is_admin() ) {
-    $dir = '.';
-}
-
-require $dir . './wp-content/plugins/' . PLUGIN_DIR_NAME . '/classes/RepresentMap.php';
+require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'classes' . DS . 'RepresentMap.php';
 
 /**
  * Shows the default represent map
@@ -61,7 +56,7 @@ function represent_map( $type = null )
     $height_map = (true === $all_map_items) ? ALL_HEIGHT_MAP : SINGLE_HEIGHT_MAP;
     $width_map = (true === $all_map_items) ? '80%' : '100%';
     
-    require './wp-content/plugins/' . PLUGIN_DIR_NAME . '/includes/theme/map.php';
+	require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'includes' . DS . 'theme' . DS .'map.php';
     
 }
 
