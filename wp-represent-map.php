@@ -15,25 +15,25 @@ License: Creative Commons (http://creativecommons.org/licenses/by-sa/2.0/)
  */
     
     // Options page
-    require plugin_dir_path(__FILE__) .  'includes/admin/options.php';
+    require plugin_dir_path(__FILE__) . 'includes/admin/options.php';
 
     // Ajax call
-    require plugin_dir_path(__FILE__) .  'includes/admin/ajax-actions.php';
+    require plugin_dir_path(__FILE__) . 'includes/admin/ajax-actions.php';
 
     // Meta boxes
-    require plugin_dir_path(__FILE__) .  'includes/admin/meta-boxes.php';
+    require plugin_dir_path(__FILE__) . 'includes/admin/meta-boxes.php';
 
     // Including Shortcodes
-    require plugin_dir_path(__FILE__) .  'includes/shortcodes/shortcode-represent-map.php';
+    require plugin_dir_path(__FILE__) . 'includes/shortcodes/shortcode-represent-map.php';
 
 
     // Including path configurations
-    require plugin_dir_path(__FILE__) .  'includes/general/creation-path-to-uploads.php';
+    require plugin_dir_path(__FILE__) . 'includes/general/creation-path-to-uploads.php';
 
 
     // including upload
     if ( is_admin() ) {
-        require plugin_dir_path(__FILE__) .  'classes/Upload.php';
+        require plugin_dir_path(__FILE__) . 'classes/Upload.php';
     }
 
 
