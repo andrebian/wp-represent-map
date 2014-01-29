@@ -190,7 +190,7 @@ function manage_options_for_wp_represent_map()
                             <?php endif; ?>
                     </select>
                     <input type="file" name="pin" >&nbsp;
-                    <input type="submit" class="submit button-primary" value="<?php echo __('Save Changes', 'wp-represent-map'); ?>">
+                    <input type="submit" class="submit-marker button-primary" value="<?php echo __('Save Changes', 'wp-represent-map'); ?>">
                 </form>
                 <h4><?php echo __('Info:', 'wp-represent-map'); ?></h4>
                 <?php echo __('Image type: ', 'wp-represent-map'); ?><b>PNG</b><br />
@@ -285,7 +285,7 @@ function manage_options_for_wp_represent_map()
         });
         
         
-        $(".submit").bind("click", function(){
+        $(".submit-marker").bind("click", function(){
             return confirm("<?php echo __('This will override the current pin if exists. Do you wish continue?', 'wp-represent-map'); ?>");
         });
         
