@@ -10,37 +10,30 @@ Text Domain: wp-represent-map
 License: Creative Commons (http://creativecommons.org/licenses/by-sa/2.0/)
 */
 
-define('PLUGIN_DIR_NAME', 'wp-represent-map');
-define('DS', DIRECTORY_SEPARATOR);
-
-if ( !defined('BLOG_URI') ) {
-    define('BLOG_URI', get_bloginfo('url'));
-}
-
 /*
  * Calling all required load files
  */
-
+    
     // Options page
-    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'includes' . DS . 'admin' . DS . 'options.php';
+    require plugin_dir_path(__FILE__) .  'includes/admin/options.php';
 
     // Ajax call
-    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'admin' . DS . 'ajax-actions.php';
+    require plugin_dir_path(__FILE__) .  'includes/admin/ajax-actions.php';
 
     // Meta boxes
-    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'admin' . DS . 'meta-boxes.php';
+    require plugin_dir_path(__FILE__) .  'includes/admin/meta-boxes.php';
 
     // Including Shortcodes
-    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'shortcodes' . DS . 'shortcode-represent-map.php';
+    require plugin_dir_path(__FILE__) .  'includes/shortcodes/shortcode-represent-map.php';
 
 
     // Including path configurations
-    require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS .'includes' . DS . 'general'. DS .'creation-path-to-uploads.php';
+    require plugin_dir_path(__FILE__) .  'includes/general/creation-path-to-uploads.php';
 
 
     // including upload
     if ( is_admin() ) {
-        require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'classes' . DS . 'Upload.php';
+        require plugin_dir_path(__FILE__) .  'classes/Upload.php';
     }
 
 
@@ -122,18 +115,17 @@ function wp_represent_map_custom_boxes()
 add_action('add_meta_boxes', 'wp_represent_map_custom_boxes');
 add_action( 'save_post', 'meta_box_item_map_info_save' );
 
-
 /**
  * Enqueue all necessary scripts and styles to Represent Map
  */
 function wp_represent_map_scripts() 
 {
-	wp_enqueue_style( 'represent-map', BLOG_URI . DS . 'wp-content' . DS . 'plugins' . DS . PLUGIN_DIR_NAME . DS . 'assets' . DS . 'css' . DS . 'represent-map.css' );
+	wp_enqueue_style( 'represent-map', plugins_url( 'assets/css/represent-map.css', __FILE__ ) );
 
-	wp_enqueue_script( 'jquery.min', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' );
+	wp_enqueue_script( 'jquery', includes_url('js/jquery/jquery.js') );
 	wp_enqueue_script( 'google.maps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=pt_BR' );
-	wp_enqueue_script( 'typeahead', BLOG_URI . DS . 'wp-content' . DS . 'plugins' . DS . PLUGIN_DIR_NAME . DS . 'assets' . DS . 'js' . DS . 'bootstrap-typeahead.js' );
-	wp_enqueue_script( 'label', BLOG_URI . DS . 'wp-content' . DS . 'plugins' . DS . PLUGIN_DIR_NAME . DS . 'assets' . DS . 'js' . DS . 'label.js' );
+	wp_enqueue_script( 'typeahead', plugins_url( 'assets/js/bootstrap-typeahead.js', __FILE__ ) );
+	wp_enqueue_script( 'label', plugins_url( 'assets/js/label.js', __FILE__ )  );
 	
 }
 add_action( 'wp_enqueue_scripts', 'wp_represent_map_scripts' );

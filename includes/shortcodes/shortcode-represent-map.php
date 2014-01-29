@@ -5,7 +5,7 @@
  * @since 0.1
  */
 
-require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'classes' . DS . 'RepresentMap.php';
+require plugin_dir_path( dirname( dirname( __FILE__ ) ) ) .  'classes/RepresentMap.php';
 
 /**
  * Shows the default represent map
@@ -48,15 +48,13 @@ function represent_map( $type = null )
         $posts = $temp_posts;
     }
     
-    $url_base = BLOG_URI . '/wp-content/uploads/map-icons/';
-    
     $options = get_option('wp-represent-map');
     
     $lat_lng = $options['_wp_represent_map_default_lat_lng'];
     $height_map = (true === $all_map_items) ? ALL_HEIGHT_MAP : SINGLE_HEIGHT_MAP;
     $width_map = (true === $all_map_items) ? '80%' : '100%';
     
-	require WP_PLUGIN_DIR . DS . PLUGIN_DIR_NAME . DS . 'includes' . DS . 'theme' . DS .'map.php';
+    require plugin_dir_path( dirname( dirname( __FILE__ ) ) ) .  'includes/theme/map.php';
     
 }
 

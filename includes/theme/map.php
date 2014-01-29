@@ -14,6 +14,8 @@
 </style>
 
 <script>
+    
+    $ = jQuery.noConflict();
 
     var map;
     var infowindow = null;
@@ -108,7 +110,7 @@
             }
 
             // build this marker
-            var markerImage = new google.maps.MarkerImage("<?php echo BLOG_URI; ?>/wp-content/uploads/map-icons/" + val[1] + ".png", null, null, null, iconSize);
+            var markerImage = new google.maps.MarkerImage("<?php echo home_url(); ?>/wp-content/uploads/map-icons/" + val[1] + ".png", null, null, null, iconSize);
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(val[2], val[3]),
                 map: map,
@@ -260,7 +262,7 @@
                        id="filter_<?php echo $mark->slug; ?>">
                   </div>
                   <a href='#' onClick="toggleList('<?php echo $mark->slug; ?>');" class="category_info">
-                      <img src="<?php echo $url_base; ?><?php echo $mark->slug; ?>.png" alt="" /><div class="span"><?php echo $mark->name; ?></div>
+                      <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug; ?>.png" alt="" /><div class="span"><?php echo $mark->name; ?></div>
                       <span class="total"> ( <?php echo $mark->count; ?> )</span>
                   </a>
                 </div>

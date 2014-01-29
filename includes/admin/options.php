@@ -84,7 +84,7 @@ function manage_options_for_wp_represent_map()
     $options_values = get_option('wp-represent-map');
     ?>
 
-    <link rel="stylesheet" href="<?php echo get_bloginfo('url'); ?>/wp-content/plugins/<?php echo PLUGIN_DIR_NAME; ?>/assets/css/represent-map.css" />
+    <link rel="stylesheet" href="<?php echo plugins_url('assets/css/represent-map.css', dirname( dirname( __FILE__) ) ); ?>" />
 
     <div class="wrap">
         <div id="icon-options-general" class="icon32"><br></div>
@@ -220,7 +220,13 @@ function manage_options_for_wp_represent_map()
                         <tr>
                             <td><?php echo __('Default Marker', 'wp-represent-map'); ?></td>
                             <td>
-                                <img src="<?php echo BLOG_URI; ?>/wp-content/uploads/map-icons/default.png" >
+                                <?php $upload_dir = wp_upload_dir(); ?>
+                                
+                                    <?php if ( file_exists( $upload_dir['basedir'] . '/map-icons/default.png' ) ) : ?>
+                                        <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/default.png" >
+                                    <?php else : ?>
+                                        <?php echo __('Not pin yet', 'wp-represent-map'); ?>
+                                    <?php endif; ?>
                             </td>
                             <td>---</td>
                         </tr>
@@ -232,7 +238,7 @@ function manage_options_for_wp_represent_map()
                                 <td>
                                     <?php if ( array_key_exists($t->slug . '.png', $icons) 
                                             && file_exists('../wp-content/uploads/map-icons/' . $icons[$t->slug . '.png'] ) ) : ?>
-                                        <img src="<?php echo BLOG_URI; ?>/wp-content/uploads/map-icons/<?php echo $icons[$t->slug . '.png']; ?>" >
+                                        <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$t->slug . '.png']; ?>" >
                                     <?php else : ?>
                                         <?php echo __('Not pin yet', 'wp-represent-map'); ?>
                                     <?php endif; ?>
