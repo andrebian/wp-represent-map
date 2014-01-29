@@ -15,7 +15,7 @@
         }
     ],        
     "homepage": "https://github.com/andrebian/wp-represent-map",
-    "license": "GPLv2",
+    "license": "Creative Commons",
     "require": {
         "php": ">=5.3.3",
         "composer/installers": "*"        
