@@ -202,20 +202,33 @@ function manage_options_for_wp_represent_map()
                     <?php echo __('Current markers', 'wp-represent-map'); ?>
                 </h3>
                 
-                <table class="options" cellspacing="0">
+                <table class="widefat" cellspacing="0">
                     <thead>
                         <tr>
                             <th>
-                                <?php echo __('Name', 'wp-represent-map'); ?>
+                                <b><?php echo __('Name', 'wp-represent-map'); ?></b>
                             </th>
                             <th>
-                                <?php echo __('Icon', 'wp-represent-map'); ?>
+                                <b><?php echo __('Icon', 'wp-represent-map'); ?></b>
                             </th>
                             <th>
-                                <?php echo __('Actions', 'wp-represent-map'); ?>
+                                <b><?php echo __('Actions', 'wp-represent-map'); ?></b>
                             </th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                <b><?php echo __('Name', 'wp-represent-map'); ?></b>
+                            </th>
+                            <th>
+                                <b><?php echo __('Icon', 'wp-represent-map'); ?></b>
+                            </th>
+                            <th>
+                                <b><?php echo __('Actions', 'wp-represent-map'); ?></b>
+                            </th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <tr>
                             <td><?php echo __('Default Marker', 'wp-represent-map'); ?></td>

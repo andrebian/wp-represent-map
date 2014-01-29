@@ -210,18 +210,6 @@ html, body, #map-canvas {
     display: none;
 }
     
-table.options th, table.options td{
-    border: #ccc solid 1px;
-    text-align: center;
-}
-table.options th{
-    height: 30px;
-    background-color: #eee;
-}
-.options {
-    width: 70% !important;
-}
-
 #TipLatLng{
     display: none;
 }
