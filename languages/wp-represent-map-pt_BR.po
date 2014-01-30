@@ -160,6 +160,9 @@ msgstr "O tipo do arquivo fornecido não é permitido"
 msgid "Fail to upload the file. Info: %s"
 msgstr "Falha ao mover o arquivo ao destino final. Informação: %s"
 
+#Options / Markers
+msgid "Error on delete the file. %s %s"
+msgstr "Erro ao remover arquivo. %s %s"
 
 msgid "Create or update a pin"
 msgstr "Adicione ou atualize um marcador para o mapa"
@@ -176,6 +179,9 @@ msgstr "Marcador adicionado com sucesso"
 msgid "Pin removed with success"
 msgstr "Marcador removido com sucesso"
 
+#Options / Markers
+msgid "Fail to delete Pin. Info: $s"
+msgstr "Falha ao remover o marcador. Informação: %s"
 
 msgid "This will override the current pin if exists. Do you wish continue?"
 msgstr "Se o marcador para o tipo selecionado já existir o mesmo será sobrescrito."

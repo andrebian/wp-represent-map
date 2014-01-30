@@ -10,6 +10,27 @@ Text Domain: wp-represent-map
 License: Creative Commons (http://creativecommons.org/licenses/by-sa/2.0/)
 */
 
+add_action('init', 'wp_represent_map_start_session', 1);
+add_action('wp_logout', 'wp_represent_map_end_session');
+add_action('wp_login', 'wp_represent_map_end_session');
+
+function wp_represent_map_start_session()
+{
+    if (!session_id()) {
+        session_start();
+    }
+}
+
+function wp_represent_map_end_session()
+{
+    session_destroy();
+}
+
+add_action('init', 'do_output_buffer');
+function do_output_buffer() {
+        ob_start();
+}
+
 /*
  * Calling all required load files
  */
@@ -138,3 +159,6 @@ add_action( 'wp_enqueue_scripts', 'wp_represent_map_scripts' );
  */
 add_action( 'wp_ajax_get_lat_lng', 'get_lat_lng' );
 add_action( 'wp_ajax_nopriv_get_lat_lng', 'get_lat_lng' );
+
+
+$_SESSION['message'] = false;

@@ -166,6 +166,10 @@ msgid "Fail to upload the file. Info: %s"
 msgstr ""
 
 #Options / Markers
+msgid "Error on delete the file. %s %s"
+msgstr ""
+
+#Options / Markers
 msgid "Create or update a pin"
 msgstr ""
 
@@ -183,6 +187,10 @@ msgstr ""
 
 #Options / Markers
 msgid "Pin removed with success"
+msgstr ""
+
+#Options / Markers
+msgid "Fail to delete Pin. Info: $s"
 msgstr ""
 
 #Options / Markers

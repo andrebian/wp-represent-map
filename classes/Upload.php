@@ -94,14 +94,14 @@ class Upload
         if ( 0 === $this->file['error'] ) {
             
             if ( !in_array($this->file['type'], $this->allowedTypes) ) {
-                array_push( $this->errors, 'The uploaded file type is not allowed' );
+                array_push( $this->errors, __('The uploaded file type is not allowed', 'wp-represent-map') );
                 return $this;
             }
             
             $this->__moveReceivedFileToDestination();
             
         } else {
-            array_push( $this->errors, 'The uploaded file has an error and is not possible to move to destination' );
+            array_push( $this->errors, __('The uploaded file has an error and is not possible to move to destination', 'wp-represent-map') );
         }
         
         return $this;
@@ -117,7 +117,7 @@ class Upload
         try{
             unlink($this->basePath . '/' . $file);
         } catch (Exception $ex) {
-            array_push($this->errors, 'Error on delete the file. ' . $ex->getMessage() . ' ' . $ex->getTrace());
+            array_push($this->errors, __( sprintf('Error on delete the file. %s %s', $ex->getMessage(), $ex->getTrace()),'wp-represent-map'));
         }
         
         return $this;
@@ -132,7 +132,7 @@ class Upload
         try{
             move_uploaded_file($this->file['tmp_name'], $this->basePath . '/' . $this->file['name']);
         } catch (Exception $ex) {
-            array_push( $this->errors, sprintf('Fail to upload the file. Info: %s', $ex->getMessage()) );
+            array_push( $this->errors, __( sprintf('Fail to upload the file. Info: %s', $ex->getMessage()), 'wp-represent-map')  );
         }
         
         return $this;

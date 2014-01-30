@@ -5,7 +5,6 @@
  * @since 0.1
  */
 
-
 /**
  * Management for options
  * 
@@ -34,10 +33,13 @@ function manage_options_for_wp_represent_map()
             );
 
             if ( update_option('wp-represent-map', $option_data) ) {
-                echo '<br /><div class="update-nag">' . __('Options saved with success', 'wp-represent-map') . '</div>';
+                $_SESSION['message'] = __('Options saved with success', 'wp-represent-map');
             } else {
-                echo '<br /><div class="update-nag">' . __('No changes made', 'wp-represent-map') . '</div>';
+                $_SESSION['message'] = __('No changes made', 'wp-represent-map');
             }
+            
+            wp_redirect( admin_url() .'options-general.php?page=wp-represent-map/wp-represent-map.php' );
+            exit;
         }
         
         
@@ -48,13 +50,15 @@ function manage_options_for_wp_represent_map()
             $upload->prepareUpload( $_FILES['pin'] )->flush();
             $errors = $upload->getErrors();
             
-            if ( empty($errors) ) {
-                echo '<script>'
-                        . 'alert("'.__('Pin uploaded with success', 'wp-represent-map').'");'
-                        . 'window.location.href="'. admin_url() .'options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers"'
-                        . '</script>';
-            } 
             
+            if ( empty($errors) ) {
+                $_SESSION['message'] = __('Pin uploaded with success', 'wp-represent-map');
+            } else {
+                $_SESSION['message'] = __(sprintf('Fail to upload the file. Info: %s', implode(', ', $errors)), 'wp-represent-map');
+            }
+            
+            wp_redirect( admin_url() .'options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers' );
+            exit;
         }
     }
     
@@ -70,11 +74,13 @@ function manage_options_for_wp_represent_map()
         }
         
         if( empty($removeErrors) ) {
-            echo '<script>'
-                        . 'alert("'.__('Pin removed with success', 'wp-represent-map').'");'
-                        . 'window.location.href="'. admin_url() .'options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers"'
-                        . '</script>';
+            $_SESSION['message'] = __('Pin removed with success', 'wp-represent-map');
+        } else {
+            $_SESSION['message'] = __(sprintf('Fail to delete Pin. Info: $s', implode($removeErrors)), 'wp-represent-map');
         }
+        
+        wp_redirect( admin_url() .'options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers' );
+        exit;
     }
 
     if( !empty($errors) ) {
@@ -96,6 +102,15 @@ function manage_options_for_wp_represent_map()
                 <?php echo $errors; ?>
             </div>
         <?php endif; ?>
+            
+            <?php if ($_SESSION['message']): ?>
+                <div class="message updated">
+                    <p><?php echo $_SESSION['message'] ?></p>
+                </div>
+                <?php
+                $_SESSION['message'] = false;
+            endif;
+            ?>    
             
         <div class="page-content">
             <h2 class="nav-tab-wrapper woo-nav-tab-wrapper">
