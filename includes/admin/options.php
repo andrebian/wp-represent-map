@@ -188,7 +188,27 @@ function manage_options_for_wp_represent_map()
                         } 
                     }
                     closedir($path);
-                ?>
+                    $parent = '';
+                    
+                    $terms = get_categories(array(
+                        'type' => 'represent_map',
+                        'taxonomy' => 'represent_map_type')
+                    );
+                    
+                    $categories = array();
+                    if (!empty($terms)) {
+                        foreach ($terms as $t) {
+                            if (0 == $t->parent) {
+                                $categories[$t->term_id] = $t;
+                                $categories[$t->term_id]->childs = get_categories(array(
+                                    'type' => 'represent_map',
+                                    'taxonomy' => 'represent_map_type',
+                                    'children_of' => $t->term_id
+                                ));
+                            }
+                        }
+                    }
+    ?>
                 
                 <form action="" name="markers" method="post" enctype="multipart/form-data">
                     <h3><?php echo __('Create or update a pin', 'wp-represent-map'); ?></h3>
@@ -197,10 +217,21 @@ function manage_options_for_wp_represent_map()
                     <select name="map_type">
                         <option value="default.png"><?php echo __('Default', 'wp-represent-map'); ?></option>
                         <?php 
-                            $terms = get_terms('represent_map_type');
-                            if ( !empty($terms) ) : ?>
-                                <?php foreach( $terms as $t ) : ?>
-                                    <option value="<?php echo $t->slug; ?>.png"><?php echo $t->name; ?></option>
+                            
+                            if ( !empty($categories) ) : ?>
+                                <?php foreach( $categories as $category ) : ?>
+                                    <?php 
+                                        
+                                    ?>
+                                    <option value="<?php echo $category->slug; ?>.png"><?php echo $category->name; ?></option>
+                                    
+                                    <?php if ( !empty($category->childs) ) : ?>
+                                        <?php foreach($category->childs as $child) : ?>
+                                            <option value="<?php echo $category->slug . '-' . $child->slug; ?>.png">
+                                                &nbsp;&nbsp;&nbsp;
+                                                <?php echo $child->name; ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                     </select>
@@ -259,25 +290,48 @@ function manage_options_for_wp_represent_map()
                             <td>---</td>
                         </tr>
                 <?php 
-                    if ( !empty($terms) ) : ?>
-                        <?php foreach( $terms as $t ) : ?>
+                    if ( !empty($categories) ) : ?>
+                        <?php foreach( $categories as $category ) : ?>
                             <tr>
-                                <td><?php echo $t->name; ?></td>
+                                <td><?php echo $category->name; ?></td>
                                 <td>
-                                    <?php if ( array_key_exists($t->slug . '.png', $icons) 
-                                            && file_exists('../wp-content/uploads/map-icons/' . $icons[$t->slug . '.png'] ) ) : ?>
-                                        <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$t->slug . '.png']; ?>" >
+                                    <?php if ( array_key_exists($category->slug . '.png', $icons) 
+                                            && file_exists('../wp-content/uploads/map-icons/' . $icons[$category->slug . '.png'] ) ) : ?>
+                                        <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$category->slug . '.png']; ?>" >
                                     <?php else : ?>
                                         <?php echo __('Not pin yet', 'wp-represent-map'); ?>
                                     <?php endif; ?>
                                 </td>
                                 <td>
                                     <a 
-                                        href="<?php echo admin_url(); ?>/options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers&delete=<?php echo base64_encode($t->slug); ?>" class="delete">
+                                        href="<?php echo admin_url(); ?>/options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers&delete=<?php echo base64_encode($category->slug); ?>" class="delete">
                                             <?php echo __('Delete', 'wp-represent-map'); ?>
                                     </a>
                                 </td>
                             </tr>
+                            <?php if ( !empty($category->childs) ) : ?>
+                                <?php foreach($category->childs as $child) : ?>
+                                    <tr>
+                                        <td><?php echo $category->name . ' - ' . $child->name; ?></td>
+                                        <td>
+                                            <?php if ( array_key_exists($category->slug . '-' . $child->slug . '.png', $icons) 
+                                                    && file_exists('../wp-content/uploads/map-icons/' . $icons[$category->slug . '-' . $child->slug . '.png'] ) ) : ?>
+                                                <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$category->slug . '-' . $child->slug . '.png']; ?>" >
+                                            <?php else : ?>
+                                                <?php echo __('Not pin yet', 'wp-represent-map'); ?>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <a 
+                                                href="<?php echo admin_url(); ?>/options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers&delete=<?php echo base64_encode($category->slug . '-' . $child->slug); ?>" class="delete">
+                                                    <?php echo __('Delete', 'wp-represent-map'); ?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                
+                            <?php endif; ?>
+                            
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </tbody>
