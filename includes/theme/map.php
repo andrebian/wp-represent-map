@@ -251,21 +251,67 @@
     <div class="menu-wp-represent-map" id="menu">
       <ul class="list" id="list">
         <?php
-          $categories = get_terms('represent_map_type');
+          $terms = get_categories(array(
+                        'type' => 'represent_map',
+                        'taxonomy' => 'represent_map_type')
+                    );
+                    
+            $categories = array();
+            if (!empty($terms)) {
+                foreach ($terms as $t) {
+                    if (0 == $t->parent) {
+                        $categories[$t->term_id] = $t;
+                        $categories[$t->term_id]->children = get_categories(array(
+                            'type' => 'represent_map',
+                            'taxonomy' => 'represent_map_type',
+                            'children_of' => $t->term_id
+                        ));
+                    }
+                }
+            }
           
           foreach($categories as $mark) : ?>
-            
+               
               <li class='category'>
-                <div class='category_item'>
-                  <div class='category_toggle' 
-                       onClick="toggle('<?php echo $mark->slug; ?>')" 
-                       id="filter_<?php echo $mark->slug; ?>">
-                  </div>
-                  <a href='#' onClick="toggleList('<?php echo $mark->slug; ?>');" class="category_info">
-                      <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug; ?>.png" alt="" /><div class="span"><?php echo $mark->name; ?></div>
-                      <span class="total"> ( <?php echo $mark->count; ?> )</span>
-                  </a>
-                </div>
+                    <div class='category_item'>
+                        <div class='category_toggle' 
+                             onClick="toggle('<?php echo $mark->slug; ?>')" 
+                             id="filter_<?php echo $mark->slug; ?>">
+                        </div>
+                        <a href='#' onClick="toggleList('<?php echo $mark->slug; ?>');" class="category_info category_info_parent" 
+                           id="<?php echo $mark->slug; ?>_child">
+                            <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug; ?>.png" alt="" /><div class="span"><?php echo $mark->name; ?></div>
+                            <span class="total"> ( <?php echo $mark->count; ?> )</span>
+                        </a>
+                    </div>
+                  
+              <?php if ( !empty($mark->children) ) :?>
+                  <ul class="subcategories <?php echo $mark->slug; ?>_child" style="display:none;">
+                      <?php $total_posts = ''; ?>
+                      <?php foreach($mark->children as $child) : ?>
+                        
+                            
+                        
+                            <div class='category_item'>
+                                <div class='category_toggle' 
+                                     onClick="toggle('<?php echo $child->slug; ?>')" 
+                                     id="filter_<?php echo $child->slug; ?>">
+                                </div>
+                                
+                                <a href='#' onClick="toggleList('<?php echo $child->slug; ?>');" class="category_info">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug . '-' . $child->slug; ?>.png" alt="" />
+                                    <div class="span"><?php echo $child->name; ?></div>
+                                    <span class="total"> ( <?php echo $child->count; ?> )</span>
+                                </a>
+                            </div>
+                      <?php endforeach; ?>
+                  </ul>
+                
+                  
+                <?php endif; ?>  
+                
+              </li>
             
             <?php 
             /*
@@ -309,3 +355,10 @@
       </ul>
     </div>
 <?php endif; ?>
+
+<script>
+    $('.category_info_parent').on('click', function(){
+        var toShow = $(this).attr('id');
+        $('.'+toShow).slideToggle('slow');
+    });
+</script>
