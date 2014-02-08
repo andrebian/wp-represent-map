@@ -188,7 +188,6 @@ function manage_options_for_wp_represent_map()
                         } 
                     }
                     closedir($path);
-                    $parent = '';
                     
                     $terms = get_categories(array(
                         'type' => 'represent_map',
