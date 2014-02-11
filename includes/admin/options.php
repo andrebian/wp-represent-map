@@ -199,15 +199,19 @@ function manage_options_for_wp_represent_map()
                         foreach ($terms as $t) {
                             if (0 == $t->parent) {
                                 $categories[$t->term_id] = $t;
-                                $categories[$t->term_id]->childs = get_categories(array(
-                                    'type' => 'represent_map',
-                                    'taxonomy' => 'represent_map_type',
-                                    'children_of' => $t->term_id
-                                ));
+                                unset($terms[$t->term_id]);
                             }
                         }
                     }
-    ?>
+
+
+                    foreach($terms as $cat) {
+                        if ( !empty($cat->name) && !empty($cat->parent) ) {
+                            $categories[$cat->parent]->children[] = $cat;
+                        }
+                    }
+                    
+                ?>
                 
                 <form action="" name="markers" method="post" enctype="multipart/form-data">
                     <h3><?php echo __('Create or update a pin', 'wp-represent-map'); ?></h3>
@@ -224,8 +228,8 @@ function manage_options_for_wp_represent_map()
                                     ?>
                                     <option value="<?php echo $category->slug; ?>.png"><?php echo $category->name; ?></option>
                                     
-                                    <?php if ( !empty($category->childs) ) : ?>
-                                        <?php foreach($category->childs as $child) : ?>
+                                    <?php if ( !empty($category->children) ) : ?>
+                                        <?php foreach($category->children as $child) : ?>
                                             <option value="<?php echo $category->slug . '-' . $child->slug; ?>.png">
                                                 &nbsp;&nbsp;&nbsp;
                                                 <?php echo $child->name; ?></option>
@@ -308,8 +312,8 @@ function manage_options_for_wp_represent_map()
                                     </a>
                                 </td>
                             </tr>
-                            <?php if ( !empty($category->childs) ) : ?>
-                                <?php foreach($category->childs as $child) : ?>
+                            <?php if ( !empty($category->children) ) : ?>
+                                <?php foreach($category->children as $child) : ?>
                                     <tr>
                                         <td><?php echo $category->name . ' - ' . $child->name; ?></td>
                                         <td>

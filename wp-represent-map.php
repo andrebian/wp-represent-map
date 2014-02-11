@@ -162,3 +162,28 @@ add_action( 'wp_ajax_nopriv_get_lat_lng', 'get_lat_lng' );
 
 
 $_SESSION['message'] = false;
+
+
+function get_posts_by_category( $category_name )
+{
+    $args = array(
+        'posts_per_page' => 30,
+        'offset' => 0,
+        'taxonomy' => 'represent_map_type',
+        'represent_map_type' => $category_name,
+        'orderby' => 'post_date',
+        'order' => 'DESC',
+        'include' => '',
+        'exclude' => '',
+        'meta_key' => '',
+        'meta_value' => '',
+        'post_type' => 'represent_map',
+        'post_mime_type' => '',
+        'post_parent' => '',
+        'post_status' => 'publish',
+        'suppress_filters' => true,
+        'depth' => 1
+    );                
+
+    return get_posts($args);
+}

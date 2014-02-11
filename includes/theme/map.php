@@ -13,6 +13,39 @@
     }
 </style>
 
+<?php 
+            $cat_arr = array();
+            $terms = get_categories(array(
+                        'type' => 'represent_map',
+                        'taxonomy' => 'represent_map_type')
+                    );
+                    
+            $categories = array();
+            if (!empty($terms)) {
+                foreach ($terms as $t) {
+                    if (0 == $t->parent) {
+                        $categories[$t->term_id] = $t;
+                        $cat_arr[$t->term_id] = array('slug' => $t->slug);
+                        unset($terms[$t->term_id]);
+                    }
+                }
+            }
+            
+            
+            
+            foreach($terms as $cat) {
+                if ( !empty($cat->name) && !empty($cat->parent) ) {
+                    
+                    if (array_key_exists($cat->parent, $cat_arr) ) {
+                        $cat_arr[$cat->parent]['children'][] = $cat->slug;
+                    }
+                    
+                    $categories[$cat->parent]->children[] = $cat;
+                }
+            }
+
+?>
+
 <script>
     
     $ = jQuery.noConflict();
@@ -251,24 +284,6 @@
     <div class="menu-wp-represent-map" id="menu">
       <ul class="list" id="list">
         <?php
-          $terms = get_categories(array(
-                        'type' => 'represent_map',
-                        'taxonomy' => 'represent_map_type')
-                    );
-                    
-            $categories = array();
-            if (!empty($terms)) {
-                foreach ($terms as $t) {
-                    if (0 == $t->parent) {
-                        $categories[$t->term_id] = $t;
-                        $categories[$t->term_id]->children = get_categories(array(
-                            'type' => 'represent_map',
-                            'taxonomy' => 'represent_map_type',
-                            'children_of' => $t->term_id
-                        ));
-                    }
-                }
-            }
           
           foreach($categories as $mark) : ?>
                

@@ -48,6 +48,61 @@ function represent_map( $type = null )
         $posts = $temp_posts;
     }
     
+            
+            $terms = get_categories(array(
+                        'type' => 'represent_map',
+                        'taxonomy' => 'represent_map_type')
+                    );
+                    
+            $categories = array();
+            if (!empty($terms)) {
+                foreach ($terms as $t) {
+                    if (0 == $t->parent) {
+                        $categories[$t->term_id] = $t;
+                        
+                        // Obtendo os posts
+                        $categories[$t->term_id]->posts = get_posts_by_category($t->slug);
+                        unset($terms[$t->term_id]);
+                    }
+                }
+            }
+            
+            foreach($terms as $cat) {
+                if ( !empty($cat->name) && !empty($cat->parent) ) {
+                    //Obtendo os posts
+                    $cat->posts = get_posts_by_category($t->slug);
+                    
+                    $categories[$cat->parent]->children[] = $cat;
+                }
+            }
+    
+            print_r($categories);
+    die();
+    
+    if ( !empty($posts) ) :
+            foreach($posts as $post) :
+        die(var_dump($post));
+                
+                if ( isset($post->types[0]) ) {
+                    $icon_type = $post->types[0];
+                } else {
+                    @$icon_type = $type;
+                }
+                
+                if ( empty($icon_type) ) {
+                    $icon_type = 'default';
+                }
+                
+                $lat_lng = explode(',',get_post_meta($post->ID, '_wp_represent_map_lat_lng', true));
+                $lat = $lat_lng[0];
+                $lng = $lat_lng[1];
+                
+                echo "markers.push(['".$post->post_title."', '".$icon_type."', '".$lat."', '".$lng."', '".$post->post_title."', '".$post->post_title."', '".get_post_meta($post->ID, '_wp_represent_map_address', true)."']);";
+                
+            endforeach;
+        endif;
+    
+    
     $options = get_option('wp-represent-map');
     
     $lat_lng = $options['_wp_represent_map_default_lat_lng'];
