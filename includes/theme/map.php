@@ -13,39 +13,6 @@
     }
 </style>
 
-<?php 
-            $cat_arr = array();
-            $terms = get_categories(array(
-                        'type' => 'represent_map',
-                        'taxonomy' => 'represent_map_type')
-                    );
-                    
-            $categories = array();
-            if (!empty($terms)) {
-                foreach ($terms as $t) {
-                    if (0 == $t->parent) {
-                        $categories[$t->term_id] = $t;
-                        $cat_arr[$t->term_id] = array('slug' => $t->slug);
-                        unset($terms[$t->term_id]);
-                    }
-                }
-            }
-            
-            
-            
-            foreach($terms as $cat) {
-                if ( !empty($cat->name) && !empty($cat->parent) ) {
-                    
-                    if (array_key_exists($cat->parent, $cat_arr) ) {
-                        $cat_arr[$cat->parent]['children'][] = $cat->slug;
-                    }
-                    
-                    $categories[$cat->parent]->children[] = $cat;
-                }
-            }
-
-?>
-
 <script>
     
     $ = jQuery.noConflict();
@@ -101,9 +68,9 @@
         // Here is the magical
         <?php if ( !empty($posts) ) :
             foreach($posts as $post) :
-                
-                if ( isset($post->types[0]) ) {
-                    $icon_type = $post->types[0];
+        
+                if ( isset($post->type) ) {
+                    $icon_type = $post->type;
                 } else {
                     @$icon_type = $type;
                 }
@@ -295,7 +262,13 @@
                         </div>
                         <a href='#' onClick="toggleList('<?php echo $mark->slug; ?>');" class="category_info category_info_parent" 
                            id="<?php echo $mark->slug; ?>_child">
-                            <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug; ?>.png" alt="" /><div class="span"><?php echo $mark->name; ?></div>
+                            <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug; ?>.png" alt="" />
+                            <div class="span">    
+                                <?php echo $mark->name; ?>
+                                <?php if ( !empty($mark->children) ) : ?>
+                                <img width="12" src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))); ?>assets/img/icons/down.png"/>
+                                <?php endif; ?>
+                            </div>
                             <span class="total"> ( <?php echo $mark->count; ?> )</span>
                         </a>
                     </div>
@@ -375,5 +348,9 @@
     $('.category_info_parent').on('click', function(){
         var toShow = $(this).attr('id');
         $('.'+toShow).slideToggle('slow');
+        return false;
+    });
+    $('.category_info').on('click', function(){
+        return false;
     });
 </script>
