@@ -299,6 +299,7 @@ function parse_posts_from_all_categories( $categories_and_posts )
         if ( !empty($cp->children) ) {
             foreach($cp->children as $child) {
                 foreach($child->posts as $post) {
+                    $post->type = $cp->slug . '-' . $post->type;
                     $posts[] = $post;
                 }
             }

@@ -23,11 +23,17 @@ function represent_map( $type = null )
     $all_map_items = $rm->setType( $type );
     
     $categories = get_categories_and_posts();
+    //print_r($categories);
      
     $categories_and_posts = remove_child_posts_from_parent($categories);
     
     $posts = parse_posts_from_all_categories( $categories_and_posts );
-    
+    /*
+    var_dump('----------------------------------------------------');
+    var_dump('----------------------------------------------------');
+    print_r($categories);
+    die();
+    */
     $options = get_option('wp-represent-map');
     
     $lat_lng = $options['_wp_represent_map_default_lat_lng'];

@@ -247,7 +247,6 @@
 <div id="map-canvas">&nbsp;</div>
 
 <?php if ( true == $all_map_items ) : ?>
-
     <div class="menu-wp-represent-map" id="menu">
       <ul class="list" id="list">
         <?php
@@ -261,10 +260,9 @@
                              id="filter_<?php echo $mark->slug; ?>">
                         </div>
                         <a href='#' onClick="toggleList('<?php echo $mark->slug; ?>');" class="category_info category_info_parent" 
-                           id="<?php echo $mark->slug; ?>_child">
+                           id="<?php echo $mark->slug; ?>_child"><?php echo $mark->name; ?>
                             <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug; ?>.png" alt="" />
                             <div class="span">    
-                                <?php echo $mark->name; ?>
                                 <?php if ( !empty($mark->children) ) : ?>
                                 <img width="12" src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))); ?>assets/img/icons/down.png"/>
                                 <?php endif; ?>
@@ -282,13 +280,13 @@
                         
                             <div class='category_item'>
                                 <div class='category_toggle' 
-                                     onClick="toggle('<?php echo $child->slug; ?>')" 
-                                     id="filter_<?php echo $child->slug; ?>">
+                                     onClick="toggle('<?php echo $mark->slug . '-' . $child->slug; ?>')" 
+                                     id="filter_<?php echo $mark->slug . '-' . $child->slug; ?>">
                                 </div>
                                 
-                                <a href='#' onClick="toggleList('<?php echo $child->slug; ?>');" class="category_info">
+                                <a href='#' onClick="toggleList('<?php echo $mark->slug . '-' . $child->slug; ?>');" class="category_info">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $child->slug; ?>.png" alt="" />
+                                    <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug . '-' . $child->slug; ?>.png" alt="" />
                                     <div class="span"><?php echo $child->name; ?></div>
                                     <span class="total"> ( <?php echo $child->count; ?> )</span>
                                 </a>
