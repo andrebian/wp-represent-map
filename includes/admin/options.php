@@ -230,7 +230,7 @@ function manage_options_for_wp_represent_map()
                                     
                                     <?php if ( !empty($category->children) ) : ?>
                                         <?php foreach($category->children as $child) : ?>
-                                            <option value="<?php echo $category->slug . '-' . $child->slug; ?>.png">
+                                            <option value="<?php echo $child->slug; ?>.png">
                                                 &nbsp;&nbsp;&nbsp;
                                                 <?php echo $child->name; ?></option>
                                         <?php endforeach; ?>
@@ -317,9 +317,10 @@ function manage_options_for_wp_represent_map()
                                     <tr>
                                         <td><?php echo $category->name . ' - ' . $child->name; ?></td>
                                         <td>
-                                            <?php if ( array_key_exists($category->slug . '-' . $child->slug . '.png', $icons) 
+                                            
+                                            <?php if ( array_key_exists($child->slug . '.png', $icons) 
                                                     && file_exists('../wp-content/uploads/map-icons/' . $icons[$category->slug . '-' . $child->slug . '.png'] ) ) : ?>
-                                                <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$category->slug . '-' . $child->slug . '.png']; ?>" >
+                                                <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$child->slug . '.png']; ?>" >
                                             <?php else : ?>
                                                 <?php echo __('Not pin yet', 'wp-represent-map'); ?>
                                             <?php endif; ?>

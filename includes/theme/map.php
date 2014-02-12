@@ -288,7 +288,7 @@
                                 
                                 <a href='#' onClick="toggleList('<?php echo $child->slug; ?>');" class="category_info">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug . '-' . $child->slug; ?>.png" alt="" />
+                                    <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $child->slug; ?>.png" alt="" />
                                     <div class="span"><?php echo $child->name; ?></div>
                                     <span class="total"> ( <?php echo $child->count; ?> )</span>
                                 </a>
