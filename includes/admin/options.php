@@ -226,11 +226,11 @@ function manage_options_for_wp_represent_map()
                                     <?php 
                                         
                                     ?>
-                                    <option value="<?php echo $category->slug; ?>.png"><?php echo $category->name; ?></option>
+                                    <option value="<?php echo $category->term_id . '-' . $category->slug; ?>.png"><?php echo $category->name; ?></option>
                                     
                                     <?php if ( !empty($category->children) ) : ?>
                                         <?php foreach($category->children as $child) : ?>
-                                            <option value="<?php echo $category->slug . '-' . $child->slug; ?>.png">
+                                            <option value="<?php echo $child->term_id . '-' . $child->slug; ?>.png">
                                                 &nbsp;&nbsp;&nbsp;
                                                 <?php echo $child->name; ?></option>
                                         <?php endforeach; ?>
@@ -298,16 +298,16 @@ function manage_options_for_wp_represent_map()
                             <tr>
                                 <td><?php echo $category->name; ?></td>
                                 <td>
-                                    <?php if ( array_key_exists($category->slug . '.png', $icons) 
-                                            && file_exists('../wp-content/uploads/map-icons/' . $icons[$category->slug . '.png'] ) ) : ?>
-                                        <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$category->slug . '.png']; ?>" >
+                                    <?php if ( array_key_exists($category->term_id . '-' . $category->slug . '.png', $icons) 
+                                            && file_exists('../wp-content/uploads/map-icons/' . $icons[$category->term_id . '-' . $category->slug . '.png'] ) ) : ?>
+                                        <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$category->term_id . '-' . $category->slug . '.png']; ?>" >
                                     <?php else : ?>
                                         <?php echo __('Not pin yet', 'wp-represent-map'); ?>
                                     <?php endif; ?>
                                 </td>
                                 <td>
                                     <a 
-                                        href="<?php echo admin_url(); ?>/options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers&delete=<?php echo base64_encode($category->slug); ?>" class="delete">
+                                        href="<?php echo admin_url(); ?>/options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers&delete=<?php echo base64_encode($category->term_id . '-' . $category->slug); ?>" class="delete">
                                             <?php echo __('Delete', 'wp-represent-map'); ?>
                                     </a>
                                 </td>
@@ -317,16 +317,16 @@ function manage_options_for_wp_represent_map()
                                     <tr>
                                         <td><?php echo $category->name . ' - ' . $child->name; ?></td>
                                         <td>
-                                            <?php if ( array_key_exists($category->slug . '-' . $child->slug . '.png', $icons) 
-                                                    && file_exists('../wp-content/uploads/map-icons/' . $icons[$category->slug . '-' . $child->slug . '.png'] ) ) : ?>
-                                                <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$category->slug . '-' . $child->slug . '.png']; ?>" >
+                                            <?php if ( array_key_exists($child->term_id . '-' . $child->slug . '.png', $icons) 
+                                                    && file_exists('../wp-content/uploads/map-icons/' . $icons[$child->term_id . '-' . $child->slug . '.png'] ) ) : ?>
+                                                <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $icons[$child->term_id . '-' . $child->slug . '.png']; ?>" >
                                             <?php else : ?>
                                                 <?php echo __('Not pin yet', 'wp-represent-map'); ?>
                                             <?php endif; ?>
                                         </td>
                                         <td>
                                             <a 
-                                                href="<?php echo admin_url(); ?>/options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers&delete=<?php echo base64_encode($category->slug . '-' . $child->slug); ?>" class="delete">
+                                                href="<?php echo admin_url(); ?>/options-general.php?page=wp-represent-map/wp-represent-map.php&tab=markers&delete=<?php echo base64_encode($child->term_id . '-' . $child->slug); ?>" class="delete">
                                                     <?php echo __('Delete', 'wp-represent-map'); ?>
                                             </a>
                                         </td>

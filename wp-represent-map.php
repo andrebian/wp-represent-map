@@ -3,7 +3,7 @@
 Plugin Name: WP Represent Map
 Plugin URI: https://github.com/andrebian/wp-represent-map
 Description: Allow represent map pins management in wordpress. This plugin was inspired on original Represent Map (https://github.com/abenzer/represent-map)
-Version: 0.2
+Version: 0.3
 Author: Andre Cardoso aka andrebian
 Author URI: http://andrebian.com
 Text Domain: wp-represent-map
@@ -166,184 +166,14 @@ $_SESSION['message'] = false;
 
 /**
  * 
- * @param string $category_name
+ * @param stdClass $post_categories
  * @return array
  */
-function get_posts_by_category( $category_name )
-{
-    $args = array(
-        'posts_per_page' => 30,
-        'offset' => 0,
-        'taxonomy' => 'represent_map_type',
-        'represent_map_type' => $category_name,
-        'orderby' => 'post_date',
-        'order' => 'DESC',
-        'include' => '',
-        'exclude' => '',
-        'meta_key' => '',
-        'meta_value' => '',
-        'post_type' => 'represent_map',
-        'post_mime_type' => '',
-        'post_parent' => '',
-        'post_status' => 'publish',
-        'suppress_filters' => true,
-        'depth' => 1
-    );                
-
-    return get_posts($args);
-}
-
-/**
- * 
- * @param array $data
- * @return array
- */
-function remove_child_posts_from_parent( $data )
+function parse_types( $post_categories )
 {
     $categories = array();
-    foreach( $data as $category) {
-        if ( !empty($category->children) ) {
-            $categories[] = _remove_posts( $category );
-        } else {
-            $categories[] = $category;
-        }
-    }
-    
-    return $categories;
-}
-
-/**
- * 
- * @param array $posts
- * @return array
- */
-function _list_parent_posts( $posts )
-{
-    $posts_arr = array();
-    foreach($posts as $index => $post) {
-        $posts_arr[$post->ID] = $index;
-    }
-
-    return $posts_arr;
-}
-    
-/**
- * 
- * @param array $category
- * @return array
- */    
-function _remove_posts( $category )
-{
-    $posts_parent = _list_parent_posts($category->posts);
-
-    foreach($category->children as $index => $children) {
-        if ( !empty($children->posts) ) {
-            foreach($children->posts as $post) {
-                if( array_key_exists($post->ID, $posts_parent) ) {
-                    unset($category->posts[$posts_parent[$post->ID]]);
-                }
-            }
-        } else {
-            $category->children[$index] = $children;
-        }
-    }
-
-    return $category;
-}
-
-/**
- * 
- * @param array $posts
- * @param string $type
- * @return array
- */
-function add_type( $posts, $type ) 
-{
-    $posts_arr = array();
-    foreach($posts as $post) {
-        $post->type = $type;
-        $posts_arr[] = $post;
-    }
-    
-    return $posts_arr;
-}
-
-/**
- * 
- * @param array $data
- * @return array
- */
-function retrieve_posts( $data = array() )
-{
-    $posts = array();
-    foreach($data->posts as $post) {
-        $posts[] = $post;
-    }
-    
-    return $posts;
-}
-
-/**
- * 
- * @param array $categories_and_posts
- * @return array
- */
-function parse_posts_from_all_categories( $categories_and_posts ) 
-{
-    $posts = array();
-    foreach($categories_and_posts as $cp) {
-        foreach($cp->posts as $post) {
-            $posts[] = $post;
-        }
-        
-        if ( !empty($cp->children) ) {
-            foreach($cp->children as $child) {
-                foreach($child->posts as $post) {
-                    $post->type = $cp->slug . '-' . $post->type;
-                    $posts[] = $post;
-                }
-            }
-        }
-    }
-    
-    return $posts;
-}
-
-/**
- * 
- * @return array
- */
-function get_categories_and_posts()
-{
-    $categories = array();
-    
-    $terms = get_categories(array(
-                'type' => 'represent_map',
-                'taxonomy' => 'represent_map_type')
-            );
-    
-    if (!empty($terms)) {
-        foreach ($terms as $t) {
-            if (0 == $t->parent) {
-                $categories[$t->term_id] = $t;
-
-                //Getting posts from parent Category
-                $posts_category = add_type(get_posts_by_category($t->slug), $t->slug);
-                $categories[$t->term_id]->posts = $posts_category;
-                
-                unset($terms[$t->term_id]);
-            }
-        }
-    }
-    
-    foreach($terms as $cat) {
-        if ( !empty($cat->name) && !empty($cat->parent) ) {
-            //Getting posts from child Category
-            $posts_category = add_type(get_posts_by_category($t->slug), $cat->slug);
-            $cat->posts = $posts_category;
-            
-            $categories[$cat->parent]->children[] = $cat;
-        }
+    foreach($post_categories as $pc) {
+        $categories[] = $pc->term_id . '-' . $pc->slug;
     }
     
     return $categories;

@@ -60,6 +60,14 @@ The WP Represent Map works with shortcode. To show all items in a map use:
 To show only one type of items on map provide the slug you want to show in **type** parameter:
 
     [represent-map type=startup]
+
+
+NOTE
+=============
+
+This plugin actually works with only 2 category levels, if exists more than 2 levels 
+the following WILL NOT APPEAR on lateral menu.
+
     
 
 CONTRIBUTING

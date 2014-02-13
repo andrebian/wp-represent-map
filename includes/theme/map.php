@@ -68,22 +68,19 @@
         // Here is the magical
         <?php if ( !empty($posts) ) :
             foreach($posts as $post) :
-        
-                if ( isset($post->type) ) {
-                    $icon_type = $post->type;
-                } else {
-                    @$icon_type = $type;
-                }
-                
-                if ( empty($icon_type) ) {
-                    $icon_type = 'default';
-                }
-                
-                $lat_lng = explode(',',get_post_meta($post->ID, '_wp_represent_map_lat_lng', true));
+            
+                $lat_lng = explode(',', $post->lat_lng);
                 $lat = $lat_lng[0];
                 $lng = $lat_lng[1];
-                
-                echo "markers.push(['".$post->post_title."', '".$icon_type."', '".$lat."', '".$lng."', '".$post->post_title."', '".$post->post_title."', '".get_post_meta($post->ID, '_wp_represent_map_address', true)."']);";
+            
+                if ( !empty($post->types) ) {
+                    foreach($post->types as $type) {
+                        echo "markers.push(['".$post->post_title."', '".$type."', '".$lat."', '".$lng."', '".$post->post_title."', '".$post->post_content."', '".$post->address."']);";
+                    }
+                    
+                } else {
+                    echo "markers.push(['".$post->post_title."', 'default', '".$lat."', '".$lng."', '".$post->post_title."', '".$post->post_content."', '".$post->address."']);";
+                }
                 
             endforeach;
         endif; ?>
@@ -256,12 +253,12 @@
               <li class='category'>
                     <div class='category_item'>
                         <div class='category_toggle' 
-                             onClick="toggle('<?php echo $mark->slug; ?>')" 
-                             id="filter_<?php echo $mark->slug; ?>">
+                             onClick="toggle('<?php echo $mark->term_id . '-' . $mark->slug; ?>')" 
+                             id="filter_<?php echo $mark->term_id . '-' . $mark->slug; ?>">
                         </div>
-                        <a href='#' onClick="toggleList('<?php echo $mark->slug; ?>');" class="category_info category_info_parent" 
-                           id="<?php echo $mark->slug; ?>_child"><?php echo $mark->name; ?>
-                            <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug; ?>.png" alt="" />
+                        <a href='#' onClick="toggleList('<?php echo $mark->term_id . '-' . $mark->slug; ?>');" class="category_info category_info_parent" 
+                           id="<?php echo $mark->term_id . '-' . $mark->slug; ?>_child"><?php echo $mark->name; ?>
+                            <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->term_id . '-' . $mark->slug; ?>.png" alt="" />
                             <div class="span">    
                                 <?php if ( !empty($mark->children) ) : ?>
                                 <img width="12" src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))); ?>assets/img/icons/down.png"/>
@@ -272,21 +269,19 @@
                     </div>
                   
               <?php if ( !empty($mark->children) ) :?>
-                  <ul class="subcategories <?php echo $mark->slug; ?>_child" style="display:none;">
+                  <ul class="subcategories <?php echo $mark->term_id . '-' . $mark->slug; ?>_child" style="display:none;">
                       <?php $total_posts = ''; ?>
                       <?php foreach($mark->children as $child) : ?>
                         
-                            
-                        
                             <div class='category_item'>
-                                <div class='category_toggle' 
-                                     onClick="toggle('<?php echo $mark->slug . '-' . $child->slug; ?>')" 
-                                     id="filter_<?php echo $mark->slug . '-' . $child->slug; ?>">
+                                <div class='category_toggle child-category-toggle' 
+                                     onClick="toggle('<?php echo $child->term_id . '-' . $child->slug; ?>')" 
+                                     id="filter_<?php echo $child->term_id . '-' . $child->slug; ?>">
                                 </div>
                                 
-                                <a href='#' onClick="toggleList('<?php echo $mark->slug . '-' . $child->slug; ?>');" class="category_info">
+                                <a href='#' onClick="toggleList('<?php echo $child->term_id . '-' . $child->slug; ?>');" class="category_info">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $mark->slug . '-' . $child->slug; ?>.png" alt="" />
+                                    <img src="<?php echo home_url(); ?>/wp-content/uploads/map-icons/<?php echo $child->term_id . '-' . $child->slug; ?>.png" alt="" />
                                     <div class="span"><?php echo $child->name; ?></div>
                                     <span class="total"> ( <?php echo $child->count; ?> )</span>
                                 </a>
@@ -294,7 +289,6 @@
                       <?php endforeach; ?>
                   </ul>
                 
-                  
                 <?php endif; ?>  
                 
               </li>
@@ -350,5 +344,8 @@
     });
     $('.category_info').on('click', function(){
         return false;
+    });
+    $('.child-category-toggle').on('click', function(){
+        $(this).toggleClass('inactive');
     });
 </script>

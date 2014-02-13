@@ -22,18 +22,45 @@ function represent_map( $type = null )
     $rm = new RepresentMap();
     $all_map_items = $rm->setType( $type );
     
-    $categories = get_categories_and_posts();
-    //print_r($categories);
-     
-    $categories_and_posts = remove_child_posts_from_parent($categories);
+    $categories = get_categories(array(
+        'type' => 'represent_map',
+        'taxonomy' => 'represent_map_type' 
+    ));
     
-    $posts = parse_posts_from_all_categories( $categories_and_posts );
-    /*
-    var_dump('----------------------------------------------------');
-    var_dump('----------------------------------------------------');
-    print_r($categories);
-    die();
-    */
+    
+    foreach($categories as $category) {
+        if ( 0 != $category->category_parent ) {
+            $categories[$category->category_parent]->children[$category->term_id] = $category;
+            unset($categories[$category->term_id]);
+        }
+    }
+    
+    $posts = get_posts(array(
+        'posts_per_page' => 0,
+        'offset' => 0,
+        'orderby' => 'post_date',
+        'order' => 'DESC',
+        'include' => '',
+        'exclude' => '',
+        'meta_key' => '',
+        'meta_value' => '',
+        'post_type' => 'represent_map',
+        'post_mime_type' => '',
+        'post_parent' => '',
+        'post_status' => 'publish',
+        'suppress_filters' => true,
+        'depth' => 1
+    ));
+    
+    $posts_temp = $posts;
+    $posts = array();
+    foreach( $posts_temp as $post ) {
+        $post->address = get_field('_wp_represent_map_address', $post->ID);
+        $post->lat_lng = get_field('_wp_represent_map_lat_lng', $post->ID);
+        $post->types = parse_types(get_the_terms( $post->ID, 'represent_map_type' ));
+        $posts[] = $post;
+    }
+    
     $options = get_option('wp-represent-map');
     
     $lat_lng = $options['_wp_represent_map_default_lat_lng'];
