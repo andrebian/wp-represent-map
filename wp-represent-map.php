@@ -100,7 +100,7 @@ function type_post_represent_map() {
                 'menu_position' => 5,
                 'menu_icon' => plugin_dir_url(__FILE__) . '/assets/img/wp-represent-map.png',
                 'register_meta_box_cb' => 'wp_represent_map_custom_boxes',
-                'supports' => array( 'title', 'editor' )
+                'supports' => array( 'title' )
         );
         register_post_type( 'represent_map', $args );
         
