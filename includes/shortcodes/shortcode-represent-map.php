@@ -55,8 +55,8 @@ function represent_map( $type = null )
     $posts_temp = $posts;
     $posts = array();
     foreach( $posts_temp as $post ) {
-        $post->address = get_field('_wp_represent_map_address', $post->ID);
-        $post->lat_lng = get_field('_wp_represent_map_lat_lng', $post->ID);
+        $post->address = get_post_meta($post->ID, '_wp_represent_map_address', true);
+        $post->lat_lng = get_post_meta($post->ID, '_wp_represent_map_lat_lng', true);
         $post->types = parse_types(get_the_terms( $post->ID, 'represent_map_type' ));
         $posts[] = $post;
     }
