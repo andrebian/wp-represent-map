@@ -1,3 +1,5 @@
+[![Latest Stable Version](https://poser.pugx.org/andrebian/wp-represent-map/v/stable.png)](https://packagist.org/packages/andrebian/wp-represent-map) [![Total Downloads](https://poser.pugx.org/andrebian/wp-represent-map/downloads.png)](https://packagist.org/packages/andrebian/wp-represent-map) [![Latest Unstable Version](https://poser.pugx.org/andrebian/wp-represent-map/v/unstable.png)](https://packagist.org/packages/andrebian/wp-represent-map) [![License](https://poser.pugx.org/andrebian/wp-represent-map/license.png)](https://packagist.org/packages/andrebian/wp-represent-map)
+
 WP REPRESENT MAP
 ================
 
